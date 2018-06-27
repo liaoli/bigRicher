@@ -19,7 +19,7 @@ var map;
         // 	this.mHight = h;
         // 	this.addEventListener(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
         // }
-        function gezi(x, y, geziImg, w, h) {
+        function gezi(x, y, geziImg, w, h, index) {
             var _this = _super.call(this) || this;
             _this.padding = 8;
             _this.geziImg = geziImg;
@@ -27,19 +27,20 @@ var map;
             _this.mHight = h;
             _this.mX = x;
             _this.mY = y;
+            _this.index = index;
+            _this.addEventListener(egret.Event.ADDED_TO_STAGE, _this.onAddToStage, _this);
             return _this;
-            //this.addEventListener(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
         }
         /**初始化*/
         gezi.prototype.onAddToStage = function (event) {
             this.width = this.mWidth;
-            this.height = this.height;
+            this.height = this.mHight;
             this.x = this.mX;
             this.y = this.mY;
             this.image = new eui.Image;
             this.image.source = this.geziImg;
-            this.image.width = this.width - this.padding;
-            this.image.height = this.height - this.padding;
+            this.image.width = this.mWidth - this.padding;
+            this.image.height = this.mHight - this.padding;
             this.addChild(this.image);
         };
         return gezi;

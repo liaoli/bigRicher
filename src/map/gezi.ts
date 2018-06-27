@@ -17,14 +17,15 @@ module map {
 		// 	this.addEventListener(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
 		// }
 
-		public constructor(x: number, y: number, geziImg: string, w: number, h: number) {
+		public constructor(x: number, y: number, geziImg: string, w: number, h: number,index:number) {
 			super();
 			this.geziImg = geziImg;
 			this.mWidth = w;
 			this.mHight = h;
 			this.mX = x;
 			this.mY = y;
-			//this.addEventListener(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
+			this.index = index;
+			this.addEventListener(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
 		}
 
 
@@ -32,12 +33,12 @@ module map {
 		private onAddToStage(event: egret.Event) {
 
 			this.width = this.mWidth;
-			this.height = this.height;
+			this.height = this.mHight;
 			this.x = this.mX; this.y = this.mY;
 			this.image = new eui.Image;
 			this.image.source = this.geziImg;
-			this.image.width = this.width - this.padding;
-			this.image.height = this.height - this.padding;
+			this.image.width = this.mWidth - this.padding;
+			this.image.height = this.mHight - this.padding;
 			this.addChild(this.image);
 		}
 
