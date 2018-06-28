@@ -517,6 +517,7 @@ module map {
 		}
 		private tapHandler() {
 
+
 			egret.Tween.get(this).to({ factor: 1 }, 500).call(() => {
 				this.nextGezi();
 				
