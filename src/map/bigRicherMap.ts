@@ -26,7 +26,7 @@ module map {
 
 			this.createjumpgezi();
 			this.addgezi()
-			this.testJump();
+			this.initPalyer();
 			this.init();
 		}
 
@@ -462,15 +462,13 @@ module map {
 		}
 
 
-		public testJump(): void {
+		public initPalyer(): void {
 
 			this.player = new eui.Image();
 			this.player.source = "player_png";
 			this.player.width = this.mGgzw - 30;
 			this.player.height = this.mGgzw - 30;
-
-			this.nextGezi();
-			console.log("this.targetPos.x = " + this.targetPos.x + ",this.targetPos.y " + this.targetPos.x);
+			
 			this.startgz = this.jumpgezis[0];
 			this.player.x = this.startgz.x + (this.startgz.width - this.player.width) / 2
 			this.player.y = this.startgz.y + this.startgz.height / 2 - this.player.height;
@@ -479,21 +477,24 @@ module map {
 
 		}
 
-		private nextGezi(): egret.Point {
-			let indexOfNext = this.indexOfPlayer + 1
-			if(indexOfNext == this.jumpgezis.length){
-				indexOfNext = 0;
-				
+		private nextGezi() {
+			console.log("this.indexOfNex = " + this.indexOfNext);
+
+			if (this.indexOfNext >= this.nextJumpGezis.length) {
+				this.indexOfNext = 0;
+				this.touchEnabled = true;
+				return;
 			}
-			let nextGz: map.gezi = this.jumpgezis[indexOfNext];
+
+			let nextGz: map.gezi = this.nextJumpGezis[this.indexOfNext];
+			this.indexOfNext++;
 			this.targetPos = new egret.Point();
-			this.targetPos.x = nextGz.x + (nextGz.width - this.player.width) / 2
-			this.targetPos.y = nextGz.y + nextGz.height / 2 - this.player.height
-			this.indexOfPlayer += 1;
-			if(this.indexOfPlayer == this.jumpgezis.length ){
-				this.indexOfPlayer = 0;
-			}
-			return this.targetPos;
+			this.targetPos.x = nextGz.x + (nextGz.width - this.player.width) / 2;
+			this.targetPos.y = nextGz.y + nextGz.height / 2 - this.player.height;
+
+			egret.Tween.get(this).to({ factor: 1 }, 500).call(() => {
+				this.nextGezi();
+			});
 		}
 
 
@@ -501,6 +502,8 @@ module map {
 		private player: eui.Image;
 		private indexOfPlayer: number = 0;
 		private targetPos: egret.Point;
+		private nextJumpGezis: Array<map.gezi>;
+		private indexOfNext: number = 0;
 
 		//添加factor的set,get方法,注意用public  
 		public get factor(): number {
@@ -515,13 +518,45 @@ module map {
 		private init() {
 			this.addEventListener(egret.TouchEvent.TOUCH_TAP, this.tapHandler, this);
 		}
+
 		private tapHandler() {
+			this.touchEnabled = false;
+			let nextGeziNum = map.getRandomInt(1, 1);
+			console.log("nextGeziNum = " + nextGeziNum)
+			console.log("this.indexOfPlayer = " + this.indexOfPlayer)
+			let start = this.indexOfPlayer + 1;
+			let end = this.indexOfPlayer + nextGeziNum + 1;
+			let lengthOfJumpgezis = this.jumpgezis.length;
+			let delt = end - lengthOfJumpgezis;
+			if (start == lengthOfJumpgezis) {
+				start = 0;
+				end = start + nextGeziNum ;
+				this.nextJumpGezis = this.jumpgezis.slice(start, end);
+				console.log("start = " + start + ",end = " + end);
+				this.indexOfPlayer = end;
+			} else {
+				if (delt > 0) {
+					this.nextJumpGezis = this.jumpgezis.slice(start, end);
+					console.log("start = " + start + ",end = " + end);
+					start = 0;
+					end = end - lengthOfJumpgezis + 1;
+					let gezis = this.jumpgezis.slice(start, end);
+					console.log("this.nextJumpGezis.length = " + this.nextJumpGezis.length);
+					console.log("gezis.length = " + gezis.length);
+					this.nextJumpGezis = this.nextJumpGezis.concat(gezis);
+					console.log("this.nextJumpGezis.length = " + this.nextJumpGezis.length);
+					this.indexOfPlayer = end - 1;
+				} else {
+					this.nextJumpGezis = this.jumpgezis.slice(start, end);
+					this.indexOfPlayer += nextGeziNum;
+				}
+			}
 
+			console.log("this.nextJumpGezis.length = " + this.nextJumpGezis.length);
 
-			egret.Tween.get(this).to({ factor: 1 }, 500).call(() => {
-				this.nextGezi();
-				
-			});
+			console.log("this.indexOfPlayer = " + this.indexOfPlayer)
+
+			this.nextGezi();
 		}
 
 	}

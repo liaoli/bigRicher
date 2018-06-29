@@ -21,4 +21,12 @@ module map {
 			return result;
 		}
 	}
+
+	/**范围内获取整数随机数*/
+	export function getRandomInt(min: number, max: number): number {
+		var Range = max - min;
+		var Rand = Math.random();
+		return (min + Math.round(Rand * Range));
+	}
+
 }

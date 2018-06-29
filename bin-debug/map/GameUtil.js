@@ -29,5 +29,12 @@ var map;
     }());
     map.GameUtil = GameUtil;
     __reflect(GameUtil.prototype, "map.GameUtil");
+    /**范围内获取整数随机数*/
+    function getRandomInt(min, max) {
+        var Range = max - min;
+        var Rand = Math.random();
+        return (min + Math.round(Rand * Range));
+    }
+    map.getRandomInt = getRandomInt;
 })(map || (map = {}));
 //# sourceMappingURL=GameUtil.js.map

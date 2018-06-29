@@ -18,6 +18,7 @@ var map;
             _this.jumpgezis = [];
             _this.fangzigezis = [];
             _this.indexOfPlayer = 0;
+            _this.indexOfNext = 0;
             _this.addEventListener(egret.Event.ADDED_TO_STAGE, _this.onAddToStage, _this);
             return _this;
         }
@@ -35,7 +36,7 @@ var map;
             //this.getwhAndxy();
             this.createjumpgezi();
             this.addgezi();
-            this.testJump();
+            this.initPalyer();
             this.init();
         };
         bigRicherMap.prototype.createjumpgezi = function () {
@@ -381,13 +382,11 @@ var map;
             var geziGroup = this.createGezi(i, j, img);
             return geziGroup;
         };
-        bigRicherMap.prototype.testJump = function () {
+        bigRicherMap.prototype.initPalyer = function () {
             this.player = new eui.Image();
             this.player.source = "player_png";
             this.player.width = this.mGgzw - 30;
             this.player.height = this.mGgzw - 30;
-            this.nextGezi();
-            console.log("this.targetPos.x = " + this.targetPos.x + ",this.targetPos.y " + this.targetPos.x);
             this.startgz = this.jumpgezis[0];
             this.player.x = this.startgz.x + (this.startgz.width - this.player.width) / 2;
             this.player.y = this.startgz.y + this.startgz.height / 2 - this.player.height;
@@ -395,19 +394,21 @@ var map;
             this.addChild(this.player);
         };
         bigRicherMap.prototype.nextGezi = function () {
-            var indexOfNext = this.indexOfPlayer + 1;
-            if (indexOfNext == this.jumpgezis.length) {
-                indexOfNext = 0;
+            var _this = this;
+            console.log("this.indexOfNex = " + this.indexOfNext);
+            if (this.indexOfNext >= this.nextJumpGezis.length) {
+                this.indexOfNext = 0;
+                this.touchEnabled = true;
+                return;
             }
-            var nextGz = this.jumpgezis[indexOfNext];
+            var nextGz = this.nextJumpGezis[this.indexOfNext];
+            this.indexOfNext++;
             this.targetPos = new egret.Point();
             this.targetPos.x = nextGz.x + (nextGz.width - this.player.width) / 2;
             this.targetPos.y = nextGz.y + nextGz.height / 2 - this.player.height;
-            this.indexOfPlayer += 1;
-            if (this.indexOfPlayer == this.jumpgezis.length) {
-                this.indexOfPlayer = 0;
-            }
-            return this.targetPos;
+            egret.Tween.get(this).to({ factor: 1 }, 500).call(function () {
+                _this.nextGezi();
+            });
         };
         Object.defineProperty(bigRicherMap.prototype, "factor", {
             //添加factor的set,get方法,注意用public  
@@ -426,10 +427,42 @@ var map;
             this.addEventListener(egret.TouchEvent.TOUCH_TAP, this.tapHandler, this);
         };
         bigRicherMap.prototype.tapHandler = function () {
-            var _this = this;
-            egret.Tween.get(this).to({ factor: 1 }, 500).call(function () {
-                _this.nextGezi();
-            });
+            this.touchEnabled = false;
+            var nextGeziNum = map.getRandomInt(1, 1);
+            console.log("nextGeziNum = " + nextGeziNum);
+            console.log("this.indexOfPlayer = " + this.indexOfPlayer);
+            var start = this.indexOfPlayer + 1;
+            var end = this.indexOfPlayer + nextGeziNum + 1;
+            var lengthOfJumpgezis = this.jumpgezis.length;
+            var delt = end - lengthOfJumpgezis;
+            if (start == lengthOfJumpgezis) {
+                start = 0;
+                end = start + nextGeziNum;
+                this.nextJumpGezis = this.jumpgezis.slice(start, end);
+                console.log("start = " + start + ",end = " + end);
+                this.indexOfPlayer = end;
+            }
+            else {
+                if (delt > 0) {
+                    this.nextJumpGezis = this.jumpgezis.slice(start, end);
+                    console.log("start = " + start + ",end = " + end);
+                    start = 0;
+                    end = end - lengthOfJumpgezis + 1;
+                    var gezis = this.jumpgezis.slice(start, end);
+                    console.log("this.nextJumpGezis.length = " + this.nextJumpGezis.length);
+                    console.log("gezis.length = " + gezis.length);
+                    this.nextJumpGezis = this.nextJumpGezis.concat(gezis);
+                    console.log("this.nextJumpGezis.length = " + this.nextJumpGezis.length);
+                    this.indexOfPlayer = end - 1;
+                }
+                else {
+                    this.nextJumpGezis = this.jumpgezis.slice(start, end);
+                    this.indexOfPlayer += nextGeziNum;
+                }
+            }
+            console.log("this.nextJumpGezis.length = " + this.nextJumpGezis.length);
+            console.log("this.indexOfPlayer = " + this.indexOfPlayer);
+            this.nextGezi();
         };
         return bigRicherMap;
     }(eui.Group));
