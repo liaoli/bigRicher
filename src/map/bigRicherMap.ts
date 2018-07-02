@@ -468,7 +468,7 @@ module map {
 			this.player.source = "player_png";
 			this.player.width = this.mGgzw - 30;
 			this.player.height = this.mGgzw - 30;
-			
+
 			this.startgz = this.jumpgezis[0];
 			this.player.x = this.startgz.x + (this.startgz.width - this.player.width) / 2
 			this.player.y = this.startgz.y + this.startgz.height / 2 - this.player.height;
@@ -521,7 +521,7 @@ module map {
 
 		private tapHandler() {
 			this.touchEnabled = false;
-			let nextGeziNum = map.getRandomInt(1, 1);
+			let nextGeziNum = map.getRandomInt(1, 6);
 			console.log("nextGeziNum = " + nextGeziNum)
 			console.log("this.indexOfPlayer = " + this.indexOfPlayer)
 			let start = this.indexOfPlayer + 1;
@@ -529,17 +529,19 @@ module map {
 			let lengthOfJumpgezis = this.jumpgezis.length;
 			let delt = end - lengthOfJumpgezis;
 			if (start == lengthOfJumpgezis) {
+				//player的当前位置是最后一格的时候
 				start = 0;
-				end = start + nextGeziNum ;
+				end = start + nextGeziNum;
 				this.nextJumpGezis = this.jumpgezis.slice(start, end);
 				console.log("start = " + start + ",end = " + end);
-				this.indexOfPlayer = end;
+				this.indexOfPlayer = end - 1;
 			} else {
 				if (delt > 0) {
+					//超过一圈了，得从数组最前面取格子补上
 					this.nextJumpGezis = this.jumpgezis.slice(start, end);
 					console.log("start = " + start + ",end = " + end);
 					start = 0;
-					end = end - lengthOfJumpgezis + 1;
+					end = end - lengthOfJumpgezis;
 					let gezis = this.jumpgezis.slice(start, end);
 					console.log("this.nextJumpGezis.length = " + this.nextJumpGezis.length);
 					console.log("gezis.length = " + gezis.length);

@@ -428,7 +428,7 @@ var map;
         };
         bigRicherMap.prototype.tapHandler = function () {
             this.touchEnabled = false;
-            var nextGeziNum = map.getRandomInt(1, 1);
+            var nextGeziNum = map.getRandomInt(1, 6);
             console.log("nextGeziNum = " + nextGeziNum);
             console.log("this.indexOfPlayer = " + this.indexOfPlayer);
             var start = this.indexOfPlayer + 1;
@@ -436,18 +436,20 @@ var map;
             var lengthOfJumpgezis = this.jumpgezis.length;
             var delt = end - lengthOfJumpgezis;
             if (start == lengthOfJumpgezis) {
+                //player的当前位置是最后一格的时候
                 start = 0;
                 end = start + nextGeziNum;
                 this.nextJumpGezis = this.jumpgezis.slice(start, end);
                 console.log("start = " + start + ",end = " + end);
-                this.indexOfPlayer = end;
+                this.indexOfPlayer = end - 1;
             }
             else {
                 if (delt > 0) {
+                    //超过一圈了，得从数组最前面取格子补上
                     this.nextJumpGezis = this.jumpgezis.slice(start, end);
                     console.log("start = " + start + ",end = " + end);
                     start = 0;
-                    end = end - lengthOfJumpgezis + 1;
+                    end = end - lengthOfJumpgezis;
                     var gezis = this.jumpgezis.slice(start, end);
                     console.log("this.nextJumpGezis.length = " + this.nextJumpGezis.length);
                     console.log("gezis.length = " + gezis.length);
