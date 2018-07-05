@@ -1,6 +1,7 @@
 module map {
 	export class gezi extends eui.Group {
 
+
 		private geziImg: string;
 		private image: eui.Image;
 		public padding: number = 8;
@@ -17,7 +18,7 @@ module map {
 		// 	this.addEventListener(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
 		// }
 
-		public constructor(x: number, y: number, geziImg: string, w: number, h: number,index:number) {
+		public constructor(x: number, y: number, geziImg: string, w: number, h: number, index: number) {
 			super();
 			this.geziImg = geziImg;
 			this.mWidth = w;
@@ -26,17 +27,22 @@ module map {
 			this.mY = y;
 			this.index = index;
 			this.addEventListener(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
+
+
+
+
 		}
 
 
 		/**初始化*/
 		private onAddToStage(event: egret.Event) {
-
 			this.width = this.mWidth;
 			this.height = this.mHight;
 			this.x = this.mX; this.y = this.mY;
-			this.image = new eui.Image;
-			this.image.source = this.geziImg;
+			this.image = new eui.Image
+			
+			this.image.texture = (<map.bigRicherMap>(this.parent)).getGeziTexture(this.geziImg);
+			// this.source = this.geziImg;
 			this.image.width = this.mWidth - this.padding;
 			this.image.height = this.mHight - this.padding;
 			this.addChild(this.image);

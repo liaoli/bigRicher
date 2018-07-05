@@ -163,6 +163,10 @@ var Main = (function (_super) {
      */
     Main.prototype.createGameScene = function () {
         var bigRicher = new map.bigRicherMap();
+        bigRicher.width = this.width - this.width / 10;
+        bigRicher.height = bigRicher.width;
+        bigRicher.x = (this.width - bigRicher.width) / 2;
+        bigRicher.y = (this.height - bigRicher.height) / 2;
         this.addChild(bigRicher);
     };
     /**

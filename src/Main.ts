@@ -97,11 +97,16 @@ class Main extends eui.UILayer {
      * 创建场景界面
      * Create scene interface
      */
-    protected createGameScene(): void {
-        
-       let bigRicher : map.bigRicherMap = new map.bigRicherMap();
+    protected createGameScene() {
 
-       this.addChild(bigRicher);
+
+        let bigRicher: map.bigRicherMap = new map.bigRicherMap();
+        bigRicher.width = this.width - this.width / 10
+        bigRicher.height = bigRicher.width;
+        bigRicher.x = (this.width - bigRicher.width) / 2;
+        bigRicher.y = (this.height - bigRicher.height) / 2;
+
+        this.addChild(bigRicher);
 
     }
     /**

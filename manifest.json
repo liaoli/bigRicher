@@ -15,6 +15,8 @@
 		"bin-debug/ThemeAdapter.js",
 		"bin-debug/map/bigRicherMap.js",
 		"bin-debug/map/GameUtil.js",
-		"bin-debug/map/gezi.js"
+		"bin-debug/map/gezi.js",
+		"bin-debug/service/Http.js",
+		"bin-debug/service/Httpconfig.js"
 	]
 }

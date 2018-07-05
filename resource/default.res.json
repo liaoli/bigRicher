@@ -1,7 +1,7 @@
 {
 	"groups": [
 		{
-			"keys": "checkbox_select_disabled_png,checkbox_select_down_png,checkbox_select_up_png,checkbox_unselect_png,selected_png,border_png,header_png,radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png,roundthumb_png,thumb_png,track_png,tracklight_png,handle_png,off_png,on_png,button_down_png,button_up_png,thumb_pb_png,track_pb_png,track_sb_png,bg_jpg,egret_icon_png,description_json,gezi_sart_png,gezi_tili_png,gezi_tou_png,gezi_wenhao_png,gezi_bg_png,gezi_dun_png,gezi_jinbi_png,gezi_pao_png,gezi_hongbaofagnzi_png,gezi_fangzi_png,player_png",
+			"keys": "checkbox_select_disabled_png,checkbox_select_down_png,checkbox_select_up_png,checkbox_unselect_png,selected_png,border_png,header_png,radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png,roundthumb_png,thumb_png,track_png,tracklight_png,handle_png,off_png,on_png,button_down_png,button_up_png,thumb_pb_png,track_pb_png,track_sb_png,bg_jpg,egret_icon_png,description_json,gezi_bg_png,player_png,gezi_json",
 			"name": "preload"
 		}
 	],
@@ -137,59 +137,20 @@
 			"url": "config/description.json"
 		},
 		{
-			"name": "gezi_sart_png",
-			"type": "image",
-			"url": "assets/map/gezi_sart.png"
-		},
-		{
-			"name": "gezi_tili_png",
-			"type": "image",
-			"url": "assets/map/gezi_tili.png"
-		},
-		{
-			"name": "gezi_tou_png",
-			"type": "image",
-			"url": "assets/map/gezi_tou.png"
-		},
-		{
-			"name": "gezi_wenhao_png",
-			"type": "image",
-			"url": "assets/map/gezi_wenhao.png"
-		},
-		{
 			"name": "gezi_bg_png",
 			"type": "image",
 			"url": "assets/map/gezi_bg.png"
 		},
 		{
-			"name": "gezi_dun_png",
-			"type": "image",
-			"url": "assets/map/gezi_dun.png"
-		},
-		{
-			"name": "gezi_jinbi_png",
-			"type": "image",
-			"url": "assets/map/gezi_jinbi.png"
-		},
-		{
-			"name": "gezi_pao_png",
-			"type": "image",
-			"url": "assets/map/gezi_pao.png"
-		},
-		{
-			"name": "gezi_hongbaofagnzi_png",
-			"type": "image",
-			"url": "assets/map/gezi_hongbaofagnzi.png"
-		},
-		{
-			"name": "gezi_fangzi_png",
-			"type": "image",
-			"url": "assets/map/gezi_fangzi.png"
-		},
-		{
 			"name": "player_png",
 			"type": "image",
 			"url": "assets/map/player.png"
+		},
+		{
+			"name": "gezi_json",
+			"type": "sheet",
+			"url": "assets/map/gezi.json",
+			"subkeys": "gezi_pao,gezi_jinbi,gezi_wenhao,gezi_tou,gezi_sart,gezi_tili,gezi_dun,gezi_fangzi,gezi_hongbaofagnzi"
 		}
 	]
 }

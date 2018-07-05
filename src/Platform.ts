@@ -8,8 +8,9 @@ declare interface Platform {
 
     getUserInfo(): Promise<any>;
 
-    login(): Promise<any>
+    login(): Promise<any>;
 
+    getMapData(): Promise<any>;
 }
 
 class DebugPlatform implements Platform {
@@ -17,7 +18,10 @@ class DebugPlatform implements Platform {
         return { nickName: "username" }
     }
     async login() {
-
+       // return XhGame.HttpUtil.post({ name: "common.login", params: { type: 1 } })
+    }
+    async getMapData() {
+        return XhGame.HttpUtil.post({ name: "common.game.bigRicher.map", params: { } })
     }
 }
 

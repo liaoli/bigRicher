@@ -15,22 +15,30 @@ module map {
 
 		protected createGameScene(): void {
 			let mapBg = map.GameUtil.createBitmapByName("gezi_bg_png");
-			this.stage.scaleMode = egret.StageScaleMode.FIXED_WIDTH;
-			mapBg.width = this.stage.stageWidth;
+			this.stage.scaleMode = egret.StageScaleMode.NO_BORDER;
+			mapBg.width = this.width;
 			this.bgwidth = mapBg.width;
 			mapBg.height = this.bgwidth;
 
 			this.bgHeight = mapBg.height;
 			this.addChild(mapBg);
-			//this.getwhAndxy();
 
 			this.createjumpgezi();
+
 			this.addgezi()
-			this.initPalyer();
+
 			this.init();
+			this.initExternalInterface();
 		}
 
 
+		public initExternalInterface(): void {
+			// TypeScript 代码
+			egret.ExternalInterface.addCallback("sendToJS", function (message: string) {
+				console.log("message form native : " + message);//message from native : message from native
+			});
+
+		}
 
 
 		private bgwidth: number;
@@ -41,6 +49,19 @@ module map {
 		private socendgz: map.gezi;
 		private jumpgezis: map.gezi[] = [];
 		private fangzigezis: map.gezi[] = [];
+		private geziTextures: { [key: string]: egret.Texture } = {		
+		};
+
+		public getGeziTexture(img: string): egret.Texture {
+			let tx: egret.Texture = this.geziTextures[img];
+
+           if(tx === undefined){
+			  tx = RES.getRes(img);
+			  this.geziTextures[img] = tx;
+		   }
+
+			return tx;
+		}
 
 
 		public createjumpgezi() {
@@ -57,205 +78,205 @@ module map {
 
 							if (j == 1) {
 								//房子
-								this.fangzigezis.push(this.createGeziByIndex(i, j, "gezi_hongbaofagnzi_png", 1))
+								this.fangzigezis.push(this.createGeziByIndex(i, j, "gezi_json.gezi_hongbaofagnzi", 1))
 							}
 
 							if (j == 2) {
 								//房子
-								this.fangzigezis.push(this.createGeziByIndex(i, j, "gezi_fangzi_png", 2))
+								this.fangzigezis.push(this.createGeziByIndex(i, j, "gezi_json.gezi_fangzi", 2))
 							}
 							if (j == 4) {
 								//房子
-								this.fangzigezis.push(this.createGeziByIndex(i, j, "gezi_fangzi_png", 4))
+								this.fangzigezis.push(this.createGeziByIndex(i, j, "gezi_json.gezi_fangzi", 4))
 							}
 							if (j == 5) {
 								//房子
-								this.fangzigezis.push(this.createGeziByIndex(i, j, "gezi_fangzi_png", 5))
+								this.fangzigezis.push(this.createGeziByIndex(i, j, "gezi_json.gezi_fangzi", 5))
 							}
 							break;
 						case 1:
 							if (j == 1) {
 								//jump  起点
-								this.jumpgezis.push(this.createGeziByIndex(i, j, "gezi_sart_png", 1));
+								this.jumpgezis.push(this.createGeziByIndex(i, j, "gezi_json.gezi_sart", 1));
 
 							}
 
 							if (j == 2) {
 								//jump
-								this.jumpgezis.push(this.createGeziByIndex(i, j, "gezi_jinbi_png", 2));
+								this.jumpgezis.push(this.createGeziByIndex(i, j, "gezi_json.gezi_jinbi", 2));
 							}
 
 							if (j == 3) {
 								//jump 问号
-								this.jumpgezis.push(this.createGeziByIndex(i, j, "gezi_wenhao_png", 3));
-								this.fangzigezis.push(this.createGeziByIndex(i, j, "gezi_fangzi_png", 3))
+								this.jumpgezis.push(this.createGeziByIndex(i, j, "gezi_json.gezi_wenhao", 3));
+								this.fangzigezis.push(this.createGeziByIndex(i, j, "gezi_json.gezi_fangzi", 3))
 							}
 							if (j == 4) {
 								//jump
-								this.jumpgezis.push(this.createGeziByIndex(i, j, "gezi_jinbi_png", 4))
+								this.jumpgezis.push(this.createGeziByIndex(i, j, "gezi_json.gezi_jinbi", 4))
 							}
 							if (j == 5) {
 								//jump
-								this.jumpgezis.push(this.createGeziByIndex(i, j, "gezi_jinbi_png", 5))
+								this.jumpgezis.push(this.createGeziByIndex(i, j, "gezi_json.gezi_jinbi", 5))
 							}
 							if (j == 6) {
 								//房子
-								this.fangzigezis.push(this.createGeziByIndex(i, j, "gezi_fangzi_png", 7))
+								this.fangzigezis.push(this.createGeziByIndex(i, j, "gezi_json.gezi_fangzi", 7))
 							}
 							break;
 						case 2:
 							if (j == 5) {
 								//jump 问号
-								this.jumpgezis.push(this.createGeziByIndex(i, j, "gezi_wenhao_png", 6));
-								this.fangzigezis.push(this.createGeziByIndex(i, j, "gezi_fangzi_png", 6))
+								this.jumpgezis.push(this.createGeziByIndex(i, j, "gezi_json.gezi_wenhao", 6));
+								this.fangzigezis.push(this.createGeziByIndex(i, j, "gezi_json.gezi_fangzi", 6))
 							}
 
 							if (j == 6) {
 								//jump
-								this.jumpgezis.push(this.createGeziByIndex(i, j, "gezi_jinbi_png", 7));
+								this.jumpgezis.push(this.createGeziByIndex(i, j, "gezi_json.gezi_jinbi", 7));
 							}
 
 							if (j == 1) {
 								//jump
-								this.jumpgezis.push(this.createGeziByIndex(i, j, "gezi_jinbi_png", 24));
+								this.jumpgezis.push(this.createGeziByIndex(i, j, "gezi_json.gezi_jinbi", 24));
 							}
 							if (j == 0) {
 								//房子
-								this.fangzigezis.push(this.createGeziByIndex(i, j, "gezi_fangzi_png", 24))
+								this.fangzigezis.push(this.createGeziByIndex(i, j, "gezi_json.gezi_fangzi", 24))
 							}
 							break;
 						case 3:
 							if (j == 0) {
 								//房子
-								this.fangzigezis.push(this.createGeziByIndex(i, j, "gezi_fangzi_png", 23))
+								this.fangzigezis.push(this.createGeziByIndex(i, j, "gezi_json.gezi_fangzi", 23))
 							}
 							if (j == 1) {
 								//jump
-								this.jumpgezis.push(this.createGeziByIndex(i, j, "gezi_jinbi_png", 23));
+								this.jumpgezis.push(this.createGeziByIndex(i, j, "gezi_json.gezi_jinbi", 23));
 							}
 							if (j == 6) {
 								//jump 盾牌
-								this.jumpgezis.push(this.createGeziByIndex(i, j, "gezi_dun_png", 8));
-								this.fangzigezis.push(this.createGeziByIndex(i, j, "gezi_fangzi_png", 8))
+								this.jumpgezis.push(this.createGeziByIndex(i, j, "gezi_json.gezi_dun", 8));
+								this.fangzigezis.push(this.createGeziByIndex(i, j, "gezi_json.gezi_fangzi", 8))
 							}
 							if (j == 7) {
 								//jump
-								this.jumpgezis.push(this.createGeziByIndex(i, j, "gezi_jinbi_png", 9));
+								this.jumpgezis.push(this.createGeziByIndex(i, j, "gezi_json.gezi_jinbi", 9));
 							}
 							if (j == 8) {
 								//房子
-								this.fangzigezis.push(this.createGeziByIndex(i, j, "gezi_fangzi_png", 9))
+								this.fangzigezis.push(this.createGeziByIndex(i, j, "gezi_json.gezi_fangzi", 9))
 							}
 
 							break;
 						case 4:
 							if (j == 0) {
 								//房子
-								this.fangzigezis.push(this.createGeziByIndex(i, j, "gezi_fangzi_png", 22))
+								this.fangzigezis.push(this.createGeziByIndex(i, j, "gezi_json.gezi_fangzi", 22))
 							}
 							if (j == 1) {
 								//jump
-								this.jumpgezis.push(this.createGeziByIndex(i, j, "gezi_jinbi_png", 22));
+								this.jumpgezis.push(this.createGeziByIndex(i, j, "gezi_json.gezi_jinbi", 22));
 							}
 
 							if (j == 7) {
 								//jump
-								this.jumpgezis.push(this.createGeziByIndex(i, j, "gezi_jinbi_png", 10));
+								this.jumpgezis.push(this.createGeziByIndex(i, j, "gezi_json.gezi_jinbi", 10));
 							}
 							if (j == 8) {
 								//房子
-								this.fangzigezis.push(this.createGeziByIndex(i, j, "gezi_fangzi_png", 10))
+								this.fangzigezis.push(this.createGeziByIndex(i, j, "gezi_json.gezi_fangzi", 10))
 							}
 							break;
 						case 5:
 							if (j == 0) {
 								//房子
-								this.fangzigezis.push(this.createGeziByIndex(i, j, "gezi_fangzi_png", 21))
+								this.fangzigezis.push(this.createGeziByIndex(i, j, "gezi_json.gezi_fangzi", 21))
 							}
 							if (j == 1) {
 								//jump
-								this.jumpgezis.push(this.createGeziByIndex(i, j, "gezi_jinbi_png", 21));
+								this.jumpgezis.push(this.createGeziByIndex(i, j, "gezi_json.gezi_jinbi", 21));
 							}
 
 							if (j == 2) {
 								//问号
-								this.jumpgezis.push(this.createGeziByIndex(i, j, "gezi_wenhao_png", 20));
-								this.fangzigezis.push(this.createGeziByIndex(i, j, "gezi_fangzi_png", 20))
+								this.jumpgezis.push(this.createGeziByIndex(i, j, "gezi_json.gezi_wenhao", 20));
+								this.fangzigezis.push(this.createGeziByIndex(i, j, "gezi_json.gezi_fangzi", 20))
 							}
 							if (j == 7) {
 								//jump
-								this.jumpgezis.push(this.createGeziByIndex(i, j, "gezi_jinbi_png", 11));
+								this.jumpgezis.push(this.createGeziByIndex(i, j, "gezi_json.gezi_jinbi", 11));
 							}
 							if (j == 8) {
 								//房子
-								this.fangzigezis.push(this.createGeziByIndex(i, j, "gezi_fangzi_png", 11))
+								this.fangzigezis.push(this.createGeziByIndex(i, j, "gezi_json.gezi_fangzi", 11))
 							}
 
 							break;
 						case 6:
 							if (j == 2) {
 								//jump
-								this.jumpgezis.push(this.createGeziByIndex(i, j, "gezi_jinbi_png", 19));
+								this.jumpgezis.push(this.createGeziByIndex(i, j, "gezi_json.gezi_jinbi", 19));
 							}
 							if (j == 3) {
 								//jump偷
-								this.jumpgezis.push(this.createGeziByIndex(i, j, "gezi_tou_png", 18))
-								this.fangzigezis.push(this.createGeziByIndex(i, j, "gezi_fangzi_png", 18))
+								this.jumpgezis.push(this.createGeziByIndex(i, j, "gezi_json.gezi_tou", 18))
+								this.fangzigezis.push(this.createGeziByIndex(i, j, "gezi_json.gezi_fangzi", 18))
 							}
 
 							if (j == 7) {
 								//jump
-								this.jumpgezis.push(this.createGeziByIndex(i, j, "gezi_jinbi_png", 12));
+								this.jumpgezis.push(this.createGeziByIndex(i, j, "gezi_json.gezi_jinbi", 12));
 							}
 							if (j == 8) {
 								//房子
-								this.fangzigezis.push(this.createGeziByIndex(i, j, "gezi_fangzi_png", 12))
+								this.fangzigezis.push(this.createGeziByIndex(i, j, "gezi_json.gezi_fangzi", 12))
 							}
 							break;
 						case 7:
 							if (j == 2) {
 								//房
-								this.fangzigezis.push(this.createGeziByIndex(i, j, "gezi_fangzi_png", 19))
+								this.fangzigezis.push(this.createGeziByIndex(i, j, "gezi_json.gezi_fangzi", 19))
 							}
 							if (j == 3) {
 								//jump
-								this.jumpgezis.push(this.createGeziByIndex(i, j, "gezi_jinbi_png", 17));
+								this.jumpgezis.push(this.createGeziByIndex(i, j, "gezi_json.gezi_jinbi", 17));
 							}
 
 							if (j == 4) {
 								//jump
-								this.jumpgezis.push(this.createGeziByIndex(i, j, "gezi_jinbi_png", 16));
+								this.jumpgezis.push(this.createGeziByIndex(i, j, "gezi_json.gezi_jinbi", 16));
 							}
 							if (j == 5) {
 								//jump炮
-								this.jumpgezis.push(this.createGeziByIndex(i, j, "gezi_pao_png", 15));
+								this.jumpgezis.push(this.createGeziByIndex(i, j, "gezi_json.gezi_pao", 15));
 								//房
-								this.fangzigezis.push(this.createGeziByIndex(i, j, "gezi_fangzi_png", 15))
+								this.fangzigezis.push(this.createGeziByIndex(i, j, "gezi_json.gezi_fangzi", 15))
 							}
 							if (j == 6) {
 								//jump
-								this.jumpgezis.push(this.createGeziByIndex(i, j, "gezi_jinbi_png", 14));
+								this.jumpgezis.push(this.createGeziByIndex(i, j, "gezi_json.gezi_jinbi", 14));
 							}
 							if (j == 7) {
 								//jump体力
-								this.jumpgezis.push(this.createGeziByIndex(i, j, "gezi_tili_png", 13));
+								this.jumpgezis.push(this.createGeziByIndex(i, j, "gezi_json.gezi_tili", 13));
 								//房
-								this.fangzigezis.push(this.createGeziByIndex(i, j, "gezi_fangzi_png", 13))
+								this.fangzigezis.push(this.createGeziByIndex(i, j, "gezi_json.gezi_fangzi", 13))
 							}
 							break;
 						case 8:
 							if (j == 3) {
 								//房子
-								this.fangzigezis.push(this.createGeziByIndex(i, j, "gezi_fangzi_png", 17))
+								this.fangzigezis.push(this.createGeziByIndex(i, j, "gezi_json.gezi_fangzi", 17))
 							}
 
 							if (j == 4) {
 								//房子
-								this.fangzigezis.push(this.createGeziByIndex(i, j, "gezi_fangzi_png", 16))
+								this.fangzigezis.push(this.createGeziByIndex(i, j, "gezi_json.gezi_fangzi", 16))
 							}
 							if (j == 6) {
 								//房子
-								this.fangzigezis.push(this.createGeziByIndex(i, j, "gezi_fangzi_png", 14))
+								this.fangzigezis.push(this.createGeziByIndex(i, j, "gezi_json.gezi_fangzi", 14))
 							}
 							break;
 						default:
@@ -281,15 +302,26 @@ module map {
 		}
 
 
-		private addgezi() {
+		private async addgezi() {
 
-			for (let i = 0; i < this.jumpgezis.length; i++) {
-				this.addChild(this.jumpgezis[i]);
-				if (i == 2 || i == 5 || i == 7 || i == 12 || i == 14 || i == 17 || i == 19) {
-					continue
+			let resp = await platform.getMapData();
+
+			resp.forEach((item, index) => {
+				console.log(item);
+			})
+
+			if (resp.length == this.jumpgezis.length) {
+
+				for (let i = 0; i < resp.length; i++) {
+					this.addChild(this.jumpgezis[i]);
+					if (i == 2 || i == 5 || i == 7 || i == 12 || i == 14 || i == 17 || i == 19) {
+						continue
+					}
+					this.addChild(this.fangzigezis[i]);
 				}
-				this.addChild(this.fangzigezis[i]);
 			}
+
+			this.initPalyer();
 		}
 
 		private createGeziByIndex(i: number, j: number, img: string, index: number): map.gezi {
@@ -301,163 +333,6 @@ module map {
 
 			let geziGroup: map.gezi = new map.gezi(x, y, img, this.mGgzw, this.mGgzw, index);
 
-			return geziGroup;
-		}
-
-		private createGezi(i: number, j: number, img: string): map.gezi {
-
-
-			let x = this.bgwidth / 2 - this.mGgzw / 2 * (j + 1) + this.mGgzw * i / 2;
-
-			let y = this.bgHeight - this.mGgzw / 2 * (j + 2) - this.mGgzw * i / 2;
-			let geziGroup: map.gezi = new map.gezi(x, y, img, this.mGgzw, this.mGgzw, 0);
-
-			return geziGroup;
-		}
-
-		public getwhAndxy() {
-
-			let gzw: number = Math.sqrt((Math.pow(this.bgwidth / 2, 2) + Math.pow(this.bgHeight / 2, 2))) / this.row;
-
-			this.mGgzw = Math.sqrt(Math.pow(gzw, 2) * 2);
-
-			for (let i: number = 0; i < this.row; i++) {
-				for (let j: number = 0; j < this.row; j++) {
-
-
-					if (i == 0 && j == 1) {
-						//红包房子
-						this.addGezi(i, j, "gezi_hongbaofagnzi_png");
-					}
-
-					if (i == 1 && j == 1) {
-						//起点
-						this.startgz = this.addGezi(i, j, "gezi_sart_png");
-					}
-					if (i == 0 && (j == 2 || j == 4 || j == 5)) {
-						//房子
-						this.addGezi(i, j, "gezi_fangzi_png");
-
-					}
-
-					if (i == 1 && (j == 6)) {
-						//房子
-						this.addGezi(i, j, "gezi_fangzi_png");
-					}
-
-					if (i == 2 && (j == 0)) {
-						//房子
-						this.addGezi(i, j, "gezi_fangzi_png");
-					}
-
-					if (i == 3 && (j == 0 || j == 8)) {
-						//房子
-						this.addGezi(i, j, "gezi_fangzi_png");
-					}
-
-					if (i == 4 && (j == 0 || j == 8)) {
-						//房子
-						this.addGezi(i, j, "gezi_fangzi_png");
-					}
-					if (i == 5 && (j == 0 || j == 8)) {
-						//房子
-						this.addGezi(i, j, "gezi_fangzi_png");
-					}
-
-					if (i == 6 && (j == 8)) {
-						//房子
-						this.addGezi(i, j, "gezi_fangzi_png");
-					}
-
-					if (i == 7 && (j == 2)) {
-						//房子
-						this.addGezi(i, j, "gezi_fangzi_png");
-					}
-
-					if (i == 8 && (j == 3 || j == 4 || j == 6)) {
-						//房子
-						this.addGezi(i, j, "gezi_fangzi_png");
-					}
-
-
-					//金币格子
-					if (i == 1 && (j == 2 || j == 4 || j == 5)) {
-						//金币格子
-						if (j == 2) {
-							this.socendgz = this.addGezi(i, j, "gezi_jinbi_png");
-						} else {
-							this.addGezi(i, j, "gezi_jinbi_png");
-						}
-					}
-
-
-					if (i == 2 && (j == 1 || j == 6)) {
-						//金币格子
-						this.addGezi(i, j, "gezi_jinbi_png");
-					}
-
-					if (i == 3 && (j == 1 || j == 7)) {
-						//金币格子
-						this.addGezi(i, j, "gezi_jinbi_png");
-					}
-					if (i == 4 && (j == 1 || j == 7)) {
-						//金币格子
-						this.addGezi(i, j, "gezi_jinbi_png");
-					}
-
-					if (i == 5 && (j == 1 || j == 7)) {
-						//金币格子
-						this.addGezi(i, j, "gezi_jinbi_png");
-					}
-
-					if (i == 6 && (j == 2 || j == 7)) {
-						//金币格子
-						this.addGezi(i, j, "gezi_jinbi_png");
-					}
-
-					if (i == 7 && (j == 3 || j == 4 || j == 6)) {
-						//金币格子
-						this.addGezi(i, j, "gezi_jinbi_png");
-					}
-
-
-
-					if ((i == 1 && j == 3) || (i == 2 && j == 5) || (i == 5 && j == 2)) {
-						//问号
-						this.addGezi(i, j, "gezi_wenhao_png");
-					}
-
-
-					if (i == 7 && (j == 5)) {
-						//炮
-						this.addGezi(i, j, "gezi_pao_png");
-					}
-
-					if (i == 6 && (j == 3)) {
-						//偷
-						this.addGezi(i, j, "gezi_tou_png");
-					}
-
-
-					if (i == 3 && (j == 6)) {
-						//盾牌
-						this.addGezi(i, j, "gezi_dun_png");
-					}
-
-					if (i == 7 && (j == 7)) {
-						//体力
-						this.addGezi(i, j, "gezi_tili_png");
-					}
-
-				}
-			}
-		}
-
-
-
-
-		private addGezi(i: number, j: number, img: string): map.gezi {
-			let geziGroup: map.gezi = this.createGezi(i, j, img);
 			return geziGroup;
 		}
 
@@ -474,7 +349,6 @@ module map {
 			this.player.y = this.startgz.y + this.startgz.height / 2 - this.player.height;
 			console.log("player x = " + this.player.x + ",player y = " + this.player.y);
 			this.addChild(this.player)
-
 		}
 
 		private nextGezi() {
@@ -512,7 +386,7 @@ module map {
 		//计算方法参考 二次贝塞尔公式  
 		public set factor(value: number) {
 			this.player.x = (1 - value) * (1 - value) * this.player.x + 2 * value * (1 - value) * (this.player.x + this.targetPos.x) / 2 + value * value * (this.targetPos.x);
-			this.player.y = (1 - value) * (1 - value) * this.player.y + 2 * value * (1 - value) * (this.targetPos.y - 75) + value * value * (this.targetPos.y);
+			this.player.y = (1 - value) * (1 - value) * this.player.y + 2 * value * (1 - value) * (this.targetPos.y - 40) + value * value * (this.targetPos.y);
 		}
 
 		private init() {
@@ -520,6 +394,7 @@ module map {
 		}
 
 		private tapHandler() {
+			egret.ExternalInterface.call("sendToNative", "message from js");
 			this.touchEnabled = false;
 			let nextGeziNum = map.getRandomInt(1, 6);
 			console.log("nextGeziNum = " + nextGeziNum)

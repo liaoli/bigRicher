@@ -53,6 +53,13 @@ var DebugPlatform = (function () {
             });
         });
     };
+    DebugPlatform.prototype.getMapData = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/, XhGame.HttpUtil.post({ name: "common.game.bigRicher.map", params: {} })];
+            });
+        });
+    };
     return DebugPlatform;
 }());
 __reflect(DebugPlatform.prototype, "DebugPlatform", ["Platform"]);
