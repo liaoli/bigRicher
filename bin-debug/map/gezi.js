@@ -12,13 +12,6 @@ var map;
 (function (map) {
     var gezi = (function (_super) {
         __extends(gezi, _super);
-        // public constructor(geziImg: string, w: number, h: number) {
-        // 	super();
-        // 	this.geziImg = geziImg;
-        // 	this.mWidth = w;
-        // 	this.mHight = h;
-        // 	this.addEventListener(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
-        // }
         function gezi(x, y, geziImg, w, h, index) {
             var _this = _super.call(this) || this;
             _this.padding = 8;

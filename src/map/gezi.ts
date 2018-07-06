@@ -10,13 +10,10 @@ module map {
 		private mX: number;
 		private mY: number;
 		public index: number;
-		// public constructor(geziImg: string, w: number, h: number) {
-		// 	super();
-		// 	this.geziImg = geziImg;
-		// 	this.mWidth = w;
-		// 	this.mHight = h;
-		// 	this.addEventListener(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
-		// }
+		private fangzi:map.gezi;
+		private data:any;
+		
+		
 
 		public constructor(x: number, y: number, geziImg: string, w: number, h: number, index: number) {
 			super();
@@ -28,9 +25,6 @@ module map {
 			this.index = index;
 			this.addEventListener(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
 
-
-
-
 		}
 
 
@@ -40,13 +34,14 @@ module map {
 			this.height = this.mHight;
 			this.x = this.mX; this.y = this.mY;
 			this.image = new eui.Image
-			
+
 			this.image.texture = (<map.bigRicherMap>(this.parent)).getGeziTexture(this.geziImg);
 			// this.source = this.geziImg;
 			this.image.width = this.mWidth - this.padding;
 			this.image.height = this.mHight - this.padding;
 			this.addChild(this.image);
 		}
+
 
 
 

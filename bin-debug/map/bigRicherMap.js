@@ -305,14 +305,15 @@ var map;
                 var resp, i;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, platform.getMapData()];
+                        case 0: return [4 /*yield*/, XhGame.getMapData()];
                         case 1:
                             resp = _a.sent();
-                            resp.forEach(function (item, index) {
+                            this.indexOfPlayer = resp.currentPosition;
+                            resp.map.forEach(function (item, index) {
                                 console.log(item);
                             });
-                            if (resp.length == this.jumpgezis.length) {
-                                for (i = 0; i < resp.length; i++) {
+                            if (resp.map.length == this.jumpgezis.length) {
+                                for (i = 0; i < resp.map.length; i++) {
                                     this.addChild(this.jumpgezis[i]);
                                     if (i == 2 || i == 5 || i == 7 || i == 12 || i == 14 || i == 17 || i == 19) {
                                         continue;
@@ -337,7 +338,7 @@ var map;
             this.player.source = "player_png";
             this.player.width = this.mGgzw - 30;
             this.player.height = this.mGgzw - 30;
-            this.startgz = this.jumpgezis[0];
+            this.startgz = this.jumpgezis[this.indexOfPlayer];
             this.player.x = this.startgz.x + (this.startgz.width - this.player.width) / 2;
             this.player.y = this.startgz.y + this.startgz.height / 2 - this.player.height;
             console.log("player x = " + this.player.x + ",player y = " + this.player.y);
@@ -377,45 +378,50 @@ var map;
             this.addEventListener(egret.TouchEvent.TOUCH_TAP, this.tapHandler, this);
         };
         bigRicherMap.prototype.tapHandler = function () {
-            egret.ExternalInterface.call("sendToNative", "message from js");
-            this.touchEnabled = false;
-            var nextGeziNum = map.getRandomInt(1, 6);
-            console.log("nextGeziNum = " + nextGeziNum);
-            console.log("this.indexOfPlayer = " + this.indexOfPlayer);
-            var start = this.indexOfPlayer + 1;
-            var end = this.indexOfPlayer + nextGeziNum + 1;
-            var lengthOfJumpgezis = this.jumpgezis.length;
-            var delt = end - lengthOfJumpgezis;
-            if (start == lengthOfJumpgezis) {
-                //player的当前位置是最后一格的时候
-                start = 0;
-                end = start + nextGeziNum;
-                this.nextJumpGezis = this.jumpgezis.slice(start, end);
-                console.log("start = " + start + ",end = " + end);
-                this.indexOfPlayer = end - 1;
-            }
-            else {
-                if (delt > 0) {
-                    //超过一圈了，得从数组最前面取格子补上
-                    this.nextJumpGezis = this.jumpgezis.slice(start, end);
-                    console.log("start = " + start + ",end = " + end);
+            var _this = this;
+            XhGame.playBigRicher().then(function (res) {
+                var nextGeziNum = res.step;
+                console.log("nextGeziNum = " + nextGeziNum);
+                console.log("this.indexOfPlayer = " + _this.indexOfPlayer);
+                var start = _this.indexOfPlayer + 1;
+                var end = _this.indexOfPlayer + nextGeziNum + 1;
+                var lengthOfJumpgezis = _this.jumpgezis.length;
+                var delt = end - lengthOfJumpgezis;
+                if (start == lengthOfJumpgezis) {
+                    //player的当前位置是最后一格的时候
                     start = 0;
-                    end = end - lengthOfJumpgezis;
-                    var gezis = this.jumpgezis.slice(start, end);
-                    console.log("this.nextJumpGezis.length = " + this.nextJumpGezis.length);
-                    console.log("gezis.length = " + gezis.length);
-                    this.nextJumpGezis = this.nextJumpGezis.concat(gezis);
-                    console.log("this.nextJumpGezis.length = " + this.nextJumpGezis.length);
-                    this.indexOfPlayer = end - 1;
+                    end = start + nextGeziNum;
+                    _this.nextJumpGezis = _this.jumpgezis.slice(start, end);
+                    console.log("start = " + start + ",end = " + end);
+                    _this.indexOfPlayer = end - 1;
                 }
                 else {
-                    this.nextJumpGezis = this.jumpgezis.slice(start, end);
-                    this.indexOfPlayer += nextGeziNum;
+                    if (delt > 0) {
+                        //超过一圈了，得从数组最前面取格子补上
+                        _this.nextJumpGezis = _this.jumpgezis.slice(start, end);
+                        console.log("start = " + start + ",end = " + end);
+                        start = 0;
+                        end = end - lengthOfJumpgezis;
+                        var gezis = _this.jumpgezis.slice(start, end);
+                        console.log("this.nextJumpGezis.length = " + _this.nextJumpGezis.length);
+                        console.log("gezis.length = " + gezis.length);
+                        _this.nextJumpGezis = _this.nextJumpGezis.concat(gezis);
+                        console.log("this.nextJumpGezis.length = " + _this.nextJumpGezis.length);
+                        _this.indexOfPlayer = end - 1;
+                    }
+                    else {
+                        _this.nextJumpGezis = _this.jumpgezis.slice(start, end);
+                        _this.indexOfPlayer += nextGeziNum;
+                    }
                 }
-            }
-            console.log("this.nextJumpGezis.length = " + this.nextJumpGezis.length);
-            console.log("this.indexOfPlayer = " + this.indexOfPlayer);
-            this.nextGezi();
+                console.log("this.nextJumpGezis.length = " + _this.nextJumpGezis.length);
+                console.log("this.indexOfPlayer = " + _this.indexOfPlayer);
+                _this.nextGezi();
+            }).catch(function (err) {
+                if (err.errorCode == 4005) {
+                    console.log(err.message);
+                }
+            });
         };
         return bigRicherMap;
     }(eui.Group));

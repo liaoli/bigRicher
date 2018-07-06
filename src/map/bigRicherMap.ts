@@ -49,16 +49,16 @@ module map {
 		private socendgz: map.gezi;
 		private jumpgezis: map.gezi[] = [];
 		private fangzigezis: map.gezi[] = [];
-		private geziTextures: { [key: string]: egret.Texture } = {		
+		private geziTextures: { [key: string]: egret.Texture } = {
 		};
 
 		public getGeziTexture(img: string): egret.Texture {
 			let tx: egret.Texture = this.geziTextures[img];
 
-           if(tx === undefined){
-			  tx = RES.getRes(img);
-			  this.geziTextures[img] = tx;
-		   }
+			if (tx === undefined) {
+				tx = RES.getRes(img);
+				this.geziTextures[img] = tx;
+			}
 
 			return tx;
 		}
@@ -304,15 +304,16 @@ module map {
 
 		private async addgezi() {
 
-			let resp = await platform.getMapData();
+			let resp = await XhGame.getMapData();
 
-			resp.forEach((item, index) => {
+			this.indexOfPlayer = resp.currentPosition;
+			resp.map.forEach((item, index) => {
 				console.log(item);
 			})
 
-			if (resp.length == this.jumpgezis.length) {
+			if (resp.map.length == this.jumpgezis.length) {
 
-				for (let i = 0; i < resp.length; i++) {
+				for (let i = 0; i < resp.map.length; i++) {
 					this.addChild(this.jumpgezis[i]);
 					if (i == 2 || i == 5 || i == 7 || i == 12 || i == 14 || i == 17 || i == 19) {
 						continue
@@ -344,7 +345,7 @@ module map {
 			this.player.width = this.mGgzw - 30;
 			this.player.height = this.mGgzw - 30;
 
-			this.startgz = this.jumpgezis[0];
+			this.startgz = this.jumpgezis[this.indexOfPlayer];
 			this.player.x = this.startgz.x + (this.startgz.width - this.player.width) / 2
 			this.player.y = this.startgz.y + this.startgz.height / 2 - this.player.height;
 			console.log("player x = " + this.player.x + ",player y = " + this.player.y);
@@ -393,47 +394,60 @@ module map {
 			this.addEventListener(egret.TouchEvent.TOUCH_TAP, this.tapHandler, this);
 		}
 
-		private tapHandler() {
-			egret.ExternalInterface.call("sendToNative", "message from js");
-			this.touchEnabled = false;
-			let nextGeziNum = map.getRandomInt(1, 6);
-			console.log("nextGeziNum = " + nextGeziNum)
-			console.log("this.indexOfPlayer = " + this.indexOfPlayer)
-			let start = this.indexOfPlayer + 1;
-			let end = this.indexOfPlayer + nextGeziNum + 1;
-			let lengthOfJumpgezis = this.jumpgezis.length;
-			let delt = end - lengthOfJumpgezis;
-			if (start == lengthOfJumpgezis) {
-				//player的当前位置是最后一格的时候
-				start = 0;
-				end = start + nextGeziNum;
-				this.nextJumpGezis = this.jumpgezis.slice(start, end);
-				console.log("start = " + start + ",end = " + end);
-				this.indexOfPlayer = end - 1;
-			} else {
-				if (delt > 0) {
-					//超过一圈了，得从数组最前面取格子补上
+		private  tapHandler() {
+			XhGame.playBigRicher().then((res) => {
+				let nextGeziNum = res.step;
+				console.log("nextGeziNum = " + nextGeziNum)
+				console.log("this.indexOfPlayer = " + this.indexOfPlayer)
+				let start = this.indexOfPlayer + 1;
+				let end = this.indexOfPlayer + nextGeziNum + 1;
+				let lengthOfJumpgezis = this.jumpgezis.length;
+				let delt = end - lengthOfJumpgezis;
+				if (start == lengthOfJumpgezis) {
+					//player的当前位置是最后一格的时候
+					start = 0;
+					end = start + nextGeziNum;
 					this.nextJumpGezis = this.jumpgezis.slice(start, end);
 					console.log("start = " + start + ",end = " + end);
-					start = 0;
-					end = end - lengthOfJumpgezis;
-					let gezis = this.jumpgezis.slice(start, end);
-					console.log("this.nextJumpGezis.length = " + this.nextJumpGezis.length);
-					console.log("gezis.length = " + gezis.length);
-					this.nextJumpGezis = this.nextJumpGezis.concat(gezis);
-					console.log("this.nextJumpGezis.length = " + this.nextJumpGezis.length);
 					this.indexOfPlayer = end - 1;
 				} else {
-					this.nextJumpGezis = this.jumpgezis.slice(start, end);
-					this.indexOfPlayer += nextGeziNum;
+					if (delt > 0) {
+						//超过一圈了，得从数组最前面取格子补上
+						this.nextJumpGezis = this.jumpgezis.slice(start, end);
+						console.log("start = " + start + ",end = " + end);
+						start = 0;
+						end = end - lengthOfJumpgezis;
+						let gezis = this.jumpgezis.slice(start, end);
+						console.log("this.nextJumpGezis.length = " + this.nextJumpGezis.length);
+						console.log("gezis.length = " + gezis.length);
+						this.nextJumpGezis = this.nextJumpGezis.concat(gezis);
+						console.log("this.nextJumpGezis.length = " + this.nextJumpGezis.length);
+						this.indexOfPlayer = end - 1;
+					} else {
+						this.nextJumpGezis = this.jumpgezis.slice(start, end);
+						this.indexOfPlayer += nextGeziNum;
+					}
 				}
-			}
 
-			console.log("this.nextJumpGezis.length = " + this.nextJumpGezis.length);
+				console.log("this.nextJumpGezis.length = " + this.nextJumpGezis.length);
 
-			console.log("this.indexOfPlayer = " + this.indexOfPlayer)
+				console.log("this.indexOfPlayer = " + this.indexOfPlayer)
 
-			this.nextGezi();
+				this.nextGezi();
+
+
+			}).catch((err) => {
+
+				if (err.errorCode == 4005){
+						console.log(err.message);
+				}
+				
+			})
+
+
+
+
+
 		}
 
 	}
