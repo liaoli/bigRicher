@@ -54,6 +54,7 @@ var map;
             _this.fangzigezis = [];
             _this.geziTextures = {};
             _this.indexOfPlayer = 0;
+            _this.point2 = new egret.Point();
             _this.indexOfNext = 0;
             _this.addEventListener(egret.Event.ADDED_TO_STAGE, _this.onAddToStage, _this);
             return _this;
@@ -357,6 +358,11 @@ var map;
             this.targetPos = new egret.Point();
             this.targetPos.x = nextGz.x + (nextGz.width - this.player.width) / 2;
             this.targetPos.y = nextGz.y + nextGz.height / 2 - this.player.height;
+            var point1 = new egret.Point();
+            point1.x = (this.player.x + this.targetPos.x) / 2;
+            point1.y = (this.targetPos.y + this.player.y) / 2;
+            this.point2.x = this.player.x;
+            this.point2.y = point1.y + (this.player.x - this.targetPos.x) * (point1.x - this.point2.x) / (this.player.y - this.targetPos.y);
             egret.Tween.get(this).to({ factor: 1 }, 500).call(function () {
                 _this.nextGezi();
             });
@@ -368,8 +374,8 @@ var map;
             },
             //计算方法参考 二次贝塞尔公式  
             set: function (value) {
-                this.player.x = (1 - value) * (1 - value) * this.player.x + 2 * value * (1 - value) * (this.player.x + this.targetPos.x) / 2 + value * value * (this.targetPos.x);
-                this.player.y = (1 - value) * (1 - value) * this.player.y + 2 * value * (1 - value) * (this.targetPos.y - 40) + value * value * (this.targetPos.y);
+                this.player.x = (1 - value) * (1 - value) * this.player.x + 2 * value * (1 - value) * this.point2.x + value * value * (this.targetPos.x);
+                this.player.y = (1 - value) * (1 - value) * this.player.y + 2 * value * (1 - value) * this.point2.y + value * value * (this.targetPos.y);
             },
             enumerable: true,
             configurable: true

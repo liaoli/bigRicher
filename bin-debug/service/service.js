@@ -39,13 +39,13 @@ var XhGame;
     function getMapData() {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                return [2 /*return*/, XhGame.HttpUtil.post({ name: "common.game.bigRicher.map", params: {} })];
+                return [2 /*return*/, XhGame.HttpUtil.post({ name: "common.game.bigRicher.map", params: { isphper: 100001 } })];
             });
         });
     }
     XhGame.getMapData = getMapData;
     function playBigRicher() {
-        return XhGame.HttpUtil.post({ name: "common.game.bigRicher.play", params: {} });
+        return XhGame.HttpUtil.post({ name: "common.game.bigRicher.play", params: { isphper: 100001 } });
     }
     XhGame.playBigRicher = playBigRicher;
 })(XhGame || (XhGame = {}));

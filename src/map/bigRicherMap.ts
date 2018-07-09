@@ -22,11 +22,8 @@ module map {
 
 			this.bgHeight = mapBg.height;
 			this.addChild(mapBg);
-
 			this.createjumpgezi();
-
 			this.addgezi()
-
 			this.init();
 			this.initExternalInterface();
 		}
@@ -327,7 +324,6 @@ module map {
 
 		private createGeziByIndex(i: number, j: number, img: string, index: number): map.gezi {
 
-
 			let x = this.bgwidth / 2 - this.mGgzw / 2 * (j + 1) + this.mGgzw * i / 2;
 
 			let y = this.bgHeight - this.mGgzw / 2 * (j + 2) - this.mGgzw * i / 2;
@@ -367,6 +363,16 @@ module map {
 			this.targetPos.x = nextGz.x + (nextGz.width - this.player.width) / 2;
 			this.targetPos.y = nextGz.y + nextGz.height / 2 - this.player.height;
 
+			let point1: egret.Point = new egret.Point();
+			
+
+			point1.x = (this.player.x + this.targetPos.x) / 2;
+			point1.y = (this.targetPos.y + this.player.y) / 2;
+
+			this.point2.x = this.player.x;
+
+			this.point2.y = point1.y + (this.player.x - this.targetPos.x)*(point1.x-this.point2.x)/(this.player.y - this.targetPos.y);
+
 			egret.Tween.get(this).to({ factor: 1 }, 500).call(() => {
 				this.nextGezi();
 			});
@@ -377,6 +383,7 @@ module map {
 		private player: eui.Image;
 		private indexOfPlayer: number = 0;
 		private targetPos: egret.Point;
+		private point2: egret.Point = new egret.Point();
 		private nextJumpGezis: Array<map.gezi>;
 		private indexOfNext: number = 0;
 
@@ -386,15 +393,18 @@ module map {
 		}
 		//计算方法参考 二次贝塞尔公式  
 		public set factor(value: number) {
-			this.player.x = (1 - value) * (1 - value) * this.player.x + 2 * value * (1 - value) * (this.player.x + this.targetPos.x) / 2 + value * value * (this.targetPos.x);
-			this.player.y = (1 - value) * (1 - value) * this.player.y + 2 * value * (1 - value) * (this.targetPos.y - 40) + value * value * (this.targetPos.y);
+
+		
+
+			this.player.x = (1 - value) * (1 - value) * this.player.x + 2 * value * (1 - value) * this.point2.x + value * value * (this.targetPos.x);
+			this.player.y = (1 - value) * (1 - value) * this.player.y + 2 * value * (1 - value) * this.point2.y + value * value * (this.targetPos.y);
 		}
 
 		private init() {
 			this.addEventListener(egret.TouchEvent.TOUCH_TAP, this.tapHandler, this);
 		}
 
-		private  tapHandler() {
+		private tapHandler() {
 			XhGame.playBigRicher().then((res) => {
 				let nextGeziNum = res.step;
 				console.log("nextGeziNum = " + nextGeziNum)
@@ -438,14 +448,11 @@ module map {
 
 			}).catch((err) => {
 
-				if (err.errorCode == 4005){
-						console.log(err.message);
+				if (err.errorCode == 4005) {
+					console.log(err.message);
 				}
-				
+
 			})
-
-
-
 
 
 		}
