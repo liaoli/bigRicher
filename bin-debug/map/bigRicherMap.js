@@ -56,6 +56,7 @@ var map;
             _this.indexOfPlayer = 0;
             _this.point2 = new egret.Point();
             _this.indexOfNext = 0;
+            _this.oldindexOfPlayer = 0;
             _this.addEventListener(egret.Event.ADDED_TO_STAGE, _this.onAddToStage, _this);
             return _this;
         }
@@ -354,15 +355,31 @@ var map;
                 return;
             }
             var nextGz = this.nextJumpGezis[this.indexOfNext];
-            this.indexOfNext++;
             this.targetPos = new egret.Point();
             this.targetPos.x = nextGz.x + (nextGz.width - this.player.width) / 2;
             this.targetPos.y = nextGz.y + nextGz.height / 2 - this.player.height;
-            var point1 = new egret.Point();
-            point1.x = (this.player.x + this.targetPos.x) / 2;
-            point1.y = (this.targetPos.y + this.player.y) / 2;
-            this.point2.x = this.player.x;
-            this.point2.y = point1.y + (this.player.x - this.targetPos.x) * (point1.x - this.point2.x) / (this.player.y - this.targetPos.y);
+            // let point1: egret.Point = new egret.Point();
+            console.log("this.targetPos:" + this.targetPos);
+            console.log("this.player.x=" + this.player.x + ",this.player.x=" + this.player.y);
+            // point1.x = (this.player.x + this.targetPos.x) / 2;
+            // point1.y = (this.targetPos.y + this.player.y) / 2;
+            if (0 <= this.oldindexOfPlayer && this.oldindexOfPlayer < 12) {
+                this.point2.x = this.player.x;
+                this.point2.y = this.targetPos.y;
+            }
+            else {
+                this.point2.x = this.targetPos.x;
+                this.point2.y = this.player.y;
+            }
+            console.log("this.point2:" + this.point2);
+            this.oldindexOfPlayer++;
+            if (this.oldindexOfPlayer == this.jumpgezis.length) {
+                this.oldindexOfPlayer = 0;
+            }
+            this.indexOfNext++;
+            //	this.point2.x = (this.player.x + this.targetPos.x) / 2;
+            //this.point2.y = point1.y + (this.player.x - this.targetPos.x)*(point1.x-this.point2.x)/(this.player.y - this.targetPos.y);
+            //	this.point2.y = this.targetPos.y;
             egret.Tween.get(this).to({ factor: 1 }, 500).call(function () {
                 _this.nextGezi();
             });
@@ -385,6 +402,7 @@ var map;
         };
         bigRicherMap.prototype.tapHandler = function () {
             var _this = this;
+            this.oldindexOfPlayer = this.indexOfPlayer;
             XhGame.playBigRicher().then(function (res) {
                 var nextGeziNum = res.step;
                 console.log("nextGeziNum = " + nextGeziNum);

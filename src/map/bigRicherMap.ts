@@ -358,20 +358,32 @@ module map {
 			}
 
 			let nextGz: map.gezi = this.nextJumpGezis[this.indexOfNext];
-			this.indexOfNext++;
+
 			this.targetPos = new egret.Point();
 			this.targetPos.x = nextGz.x + (nextGz.width - this.player.width) / 2;
 			this.targetPos.y = nextGz.y + nextGz.height / 2 - this.player.height;
 
-			let point1: egret.Point = new egret.Point();
+		
+
+			console.log("this.targetPos:" + this.targetPos);
+
+			console.log("this.player.x=" + this.player.x + ",this.player.x=" + this.player.y);
 			
 
-			point1.x = (this.player.x + this.targetPos.x) / 2;
-			point1.y = (this.targetPos.y + this.player.y) / 2;
-
-			this.point2.x = this.player.x;
-
-			this.point2.y = point1.y + (this.player.x - this.targetPos.x)*(point1.x-this.point2.x)/(this.player.y - this.targetPos.y);
+			if (0 <= this.oldindexOfPlayer && this.oldindexOfPlayer < 12) {
+				this.point2.x = this.player.x;
+				this.point2.y = this.targetPos.y;
+			} else {
+				this.point2.x = this.targetPos.x;
+				this.point2.y = this.player.y;
+			}
+			console.log("this.point2:" + this.point2);
+			this.oldindexOfPlayer++;
+			if (this.oldindexOfPlayer == this.jumpgezis.length) {
+				this.oldindexOfPlayer = 0;
+			}
+			this.indexOfNext++;
+			
 
 			egret.Tween.get(this).to({ factor: 1 }, 500).call(() => {
 				this.nextGezi();
@@ -386,6 +398,8 @@ module map {
 		private point2: egret.Point = new egret.Point();
 		private nextJumpGezis: Array<map.gezi>;
 		private indexOfNext: number = 0;
+		private oldindexOfPlayer: number = 0;
+
 
 		//添加factor的set,get方法,注意用public  
 		public get factor(): number {
@@ -393,8 +407,6 @@ module map {
 		}
 		//计算方法参考 二次贝塞尔公式  
 		public set factor(value: number) {
-
-		
 
 			this.player.x = (1 - value) * (1 - value) * this.player.x + 2 * value * (1 - value) * this.point2.x + value * value * (this.targetPos.x);
 			this.player.y = (1 - value) * (1 - value) * this.player.y + 2 * value * (1 - value) * this.point2.y + value * value * (this.targetPos.y);
@@ -405,6 +417,7 @@ module map {
 		}
 
 		private tapHandler() {
+			this.oldindexOfPlayer = this.indexOfPlayer;
 			XhGame.playBigRicher().then((res) => {
 				let nextGeziNum = res.step;
 				console.log("nextGeziNum = " + nextGeziNum)
