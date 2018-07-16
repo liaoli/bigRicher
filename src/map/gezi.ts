@@ -4,16 +4,16 @@ module map {
 
 		private geziImg: string;
 		private image: eui.Image;
-		public padding: number = 8;
+		public padding: number = 7;
 		private mWidth: number;
 		private mHight: number;
 		private mX: number;
 		private mY: number;
 		public index: number;
-		private fangzi:map.gezi;
-		private data:any;
-		
-		
+		private fangzi: map.gezi;
+		private data: any;
+
+
 
 		public constructor(x: number, y: number, geziImg: string, w: number, h: number, index: number) {
 			super();
@@ -32,14 +32,26 @@ module map {
 		private onAddToStage(event: egret.Event) {
 			this.width = this.mWidth;
 			this.height = this.mHight;
-			this.x = this.mX; this.y = this.mY;
+			this.x = this.mX  ; this.y = this.mY;
 			this.image = new eui.Image
 
 			this.image.texture = (<map.bigRicherMap>(this.parent)).getGeziTexture(this.geziImg);
-			// this.source = this.geziImg;
-			this.image.width = this.mWidth - this.padding;
-			this.image.height = this.mHight - this.padding;
-			this.addChild(this.image);
+
+			if ("gezi_fangzi_png" == this.geziImg) {
+
+				this.image.width = this.width;
+				this.height = this.image.height = this.image.texture.bitmapData.height * this.width / this.image.texture.bitmapData.width;
+				this.y= this.mY - this.height + this.mHight - 8;
+				this.addChild(this.image);
+			} else {
+
+				// this.source = this.geziImg;
+				this.image.x = this.padding / 2;
+				this.image.y = this.padding / 2;
+				this.image.width = this.mWidth - this.padding;
+				this.image.height = this.mHight - this.padding;
+				this.addChild(this.image);
+			}
 		}
 
 

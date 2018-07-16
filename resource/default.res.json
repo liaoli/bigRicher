@@ -1,7 +1,7 @@
 {
 	"groups": [
 		{
-			"keys": "checkbox_select_disabled_png,checkbox_select_down_png,checkbox_select_up_png,checkbox_unselect_png,selected_png,border_png,header_png,radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png,roundthumb_png,thumb_png,track_png,tracklight_png,handle_png,off_png,on_png,button_down_png,button_up_png,thumb_pb_png,track_pb_png,track_sb_png,bg_jpg,egret_icon_png,description_json,gezi_bg_png,player_png,gezi_json,jinbi_png,shuzi_fnt,shuzi_png",
+			"keys": "checkbox_select_disabled_png,checkbox_select_down_png,checkbox_select_up_png,checkbox_unselect_png,selected_png,border_png,header_png,radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png,roundthumb_png,thumb_png,track_png,tracklight_png,handle_png,off_png,on_png,button_down_png,button_up_png,thumb_pb_png,track_pb_png,track_sb_png,bg_jpg,egret_icon_png,description_json,gezi_bg_png,player_png,jinbi_png,shuzi_fnt,shuzi_png,gezi_fangzi_png,gezi_sart_png,gezi_pao_png,gezi_wenhao_png,gezi_tou_png,gezi_dun_png,gezi_tili_png,gezi_hongbaofagnzi_png,gezi_jinbi_png",
 			"name": "preload"
 		}
 	],
@@ -132,40 +132,84 @@
 			"name": "egret_icon_png"
 		},
 		{
-			"name": "description_json",
+			"url": "config/description.json",
 			"type": "json",
-			"url": "config/description.json"
+			"name": "description_json"
 		},
 		{
-			"name": "gezi_bg_png",
+			"url": "assets/map/gezi_bg.png",
 			"type": "image",
-			"url": "assets/map/gezi_bg.png"
+			"name": "gezi_bg_png"
 		},
 		{
-			"name": "player_png",
+			"url": "assets/map/player.png",
 			"type": "image",
-			"url": "assets/map/player.png"
+			"name": "player_png"
 		},
 		{
-			"name": "gezi_json",
-			"type": "sheet",
-			"url": "assets/map/gezi.json",
-			"subkeys": "gezi_pao,gezi_jinbi,gezi_wenhao,gezi_tou,gezi_sart,gezi_tili,gezi_dun,gezi_fangzi,gezi_hongbaofagnzi"
-		},
-		{
-			"name": "jinbi_png",
+			"url": "assets/map/jinbi.png",
 			"type": "image",
-			"url": "assets/map/jinbi.png"
+			"name": "jinbi_png"
 		},
 		{
-			"name": "shuzi_fnt",
+			"url": "assets/map/shuzi.fnt",
 			"type": "font",
-			"url": "assets/map/shuzi.fnt"
+			"name": "shuzi_fnt"
 		},
 		{
-			"name": "shuzi_png",
+			"url": "assets/map/shuzi.png",
 			"type": "image",
-			"url": "assets/map/shuzi.png"
+			"name": "shuzi_png"
+		},
+		{
+			"url": "assets/map_jinbi_geizi.png",
+			"type": "image",
+			"name": "map_jinbi_geizi_png"
+		},
+		{
+			"url": "assets/map/gezi_fangzi.png",
+			"type": "image",
+			"name": "gezi_fangzi_png"
+		},
+		{
+			"url": "assets/map/gezi_sart.png",
+			"type": "image",
+			"name": "gezi_sart_png"
+		},
+		{
+			"url": "assets/map/gezi_pao.png",
+			"type": "image",
+			"name": "gezi_pao_png"
+		},
+		{
+			"url": "assets/map/gezi_wenhao.png",
+			"type": "image",
+			"name": "gezi_wenhao_png"
+		},
+		{
+			"url": "assets/map/gezi_tou.png",
+			"type": "image",
+			"name": "gezi_tou_png"
+		},
+		{
+			"url": "assets/map/gezi_dun.png",
+			"type": "image",
+			"name": "gezi_dun_png"
+		},
+		{
+			"url": "assets/map/gezi_hongbaofagnzi.png",
+			"type": "image",
+			"name": "gezi_hongbaofagnzi_png"
+		},
+		{
+			"url": "assets/gezi_tili.png",
+			"type": "image",
+			"name": "gezi_tili_png"
+		},
+		{
+			"url": "assets/gezi_jinbi.png",
+			"type": "image",
+			"name": "gezi_jinbi_png"
 		}
 	]
 }

@@ -14,7 +14,7 @@ var map;
         __extends(gezi, _super);
         function gezi(x, y, geziImg, w, h, index) {
             var _this = _super.call(this) || this;
-            _this.padding = 8;
+            _this.padding = 7;
             _this.geziImg = geziImg;
             _this.mWidth = w;
             _this.mHight = h;
@@ -32,10 +32,20 @@ var map;
             this.y = this.mY;
             this.image = new eui.Image;
             this.image.texture = (this.parent).getGeziTexture(this.geziImg);
-            // this.source = this.geziImg;
-            this.image.width = this.mWidth - this.padding;
-            this.image.height = this.mHight - this.padding;
-            this.addChild(this.image);
+            if ("gezi_fangzi_png" == this.geziImg) {
+                this.image.width = this.width;
+                this.height = this.image.height = this.image.texture.bitmapData.height * this.width / this.image.texture.bitmapData.width;
+                this.y = this.mY - this.height + this.mHight - 8;
+                this.addChild(this.image);
+            }
+            else {
+                // this.source = this.geziImg;
+                this.image.x = this.padding / 2;
+                this.image.y = this.padding / 2;
+                this.image.width = this.mWidth - this.padding;
+                this.image.height = this.mHight - this.padding;
+                this.addChild(this.image);
+            }
         };
         return gezi;
     }(eui.Group));
