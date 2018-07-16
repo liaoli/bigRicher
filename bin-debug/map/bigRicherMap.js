@@ -55,6 +55,7 @@ var map;
             _this.geziTextures = {};
             _this.indexOfPlayer = 0;
             _this.point2 = new egret.Point();
+            _this.nextJinbis = new Array();
             _this.indexOfNext = 0;
             _this.oldindexOfPlayer = 0;
             _this.addEventListener(egret.Event.ADDED_TO_STAGE, _this.onAddToStage, _this);
@@ -358,11 +359,8 @@ var map;
             this.targetPos = new egret.Point();
             this.targetPos.x = nextGz.x + (nextGz.width - this.player.width) / 2;
             this.targetPos.y = nextGz.y + nextGz.height / 2 - this.player.height;
-            // let point1: egret.Point = new egret.Point();
             console.log("this.targetPos:" + this.targetPos);
             console.log("this.player.x=" + this.player.x + ",this.player.x=" + this.player.y);
-            // point1.x = (this.player.x + this.targetPos.x) / 2;
-            // point1.y = (this.targetPos.y + this.player.y) / 2;
             if (0 <= this.oldindexOfPlayer && this.oldindexOfPlayer < 12) {
                 this.point2.x = this.player.x;
                 this.point2.y = this.targetPos.y;
@@ -376,11 +374,11 @@ var map;
             if (this.oldindexOfPlayer == this.jumpgezis.length) {
                 this.oldindexOfPlayer = 0;
             }
-            this.indexOfNext++;
-            //	this.point2.x = (this.player.x + this.targetPos.x) / 2;
-            //this.point2.y = point1.y + (this.player.x - this.targetPos.x)*(point1.x-this.point2.x)/(this.player.y - this.targetPos.y);
-            //	this.point2.y = this.targetPos.y;
             egret.Tween.get(this).to({ factor: 1 }, 500).call(function () {
+                var jinbi = _this.nextJinbis.shift();
+                _this.removeChild(jinbi);
+                map.JinbiOfGezi.reclaim(jinbi);
+                _this.indexOfNext++;
                 _this.nextGezi();
             });
         };
@@ -391,6 +389,7 @@ var map;
             },
             //计算方法参考 二次贝塞尔公式  
             set: function (value) {
+                //console.log("value = " + value);
                 this.player.x = (1 - value) * (1 - value) * this.player.x + 2 * value * (1 - value) * this.point2.x + value * value * (this.targetPos.x);
                 this.player.y = (1 - value) * (1 - value) * this.player.y + 2 * value * (1 - value) * this.point2.y + value * value * (this.targetPos.y);
             },
@@ -402,6 +401,7 @@ var map;
         };
         bigRicherMap.prototype.tapHandler = function () {
             var _this = this;
+            this.touchEnabled = false;
             this.oldindexOfPlayer = this.indexOfPlayer;
             XhGame.playBigRicher().then(function (res) {
                 var nextGeziNum = res.step;
@@ -440,11 +440,28 @@ var map;
                 }
                 console.log("this.nextJumpGezis.length = " + _this.nextJumpGezis.length);
                 console.log("this.indexOfPlayer = " + _this.indexOfPlayer);
+                var items = res.rewards;
+                console.log("this.nextJumpGezis.length = " + _this.nextJumpGezis.length);
+                console.log("items.length = " + items.length);
+                _this.nextJumpGezis.forEach(function (item, index) {
+                    var jinbiValue = 0;
+                    if (items[index].reward.event == 1) {
+                        jinbiValue = items[index].reward.extra.coin;
+                    }
+                    var jinbi = map.JinbiOfGezi.produce(_this.mGgzw, jinbiValue + "");
+                    jinbi.x = item.x + (item.width - jinbi.width) / 3;
+                    jinbi.y = item.y - jinbi.height / 8;
+                    _this.nextJinbis.push(jinbi);
+                });
+                _this.nextJinbis.forEach(function (item, index) {
+                    _this.addChild(item);
+                });
                 _this.nextGezi();
             }).catch(function (err) {
                 if (err.errorCode == 4005) {
                     console.log(err.message);
                 }
+                console.log(err);
             });
         };
         return bigRicherMap;

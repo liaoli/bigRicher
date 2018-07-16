@@ -74,7 +74,14 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 var Main = (function (_super) {
     __extends(Main, _super);
     function Main() {
-        return _super !== null && _super.apply(this, arguments) || this;
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.touchPoints = { names: [] }; //{touchid:touch local,names:[ID1,ID2]};
+        _this.distance = 0;
+        _this.defAngle = 0;
+        _this.touchCon = 0;
+        _this._currentBirdRotation = 0;
+        _this.c = 0.017453292; //2PI/360
+        return _this;
     }
     Main.prototype.createChildren = function () {
         _super.prototype.createChildren.call(this);
@@ -163,11 +170,22 @@ var Main = (function (_super) {
      */
     Main.prototype.createGameScene = function () {
         var bigRicher = new map.bigRicherMap();
+        this._bird = bigRicher;
         bigRicher.width = this.width - this.width / 10;
         bigRicher.height = bigRicher.width;
-        bigRicher.x = (this.width - bigRicher.width) / 2;
-        bigRicher.y = (this.height - bigRicher.height) / 2;
+        this._bird.x = this.stage.stageWidth / 2;
+        this._bird.y = this.stage.stageHeight / 2;
+        this._bird.anchorOffsetX = this._bird.width / 2;
+        this._bird.anchorOffsetY = this._bird.height / 2;
         this.addChild(bigRicher);
+        this.stage.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this.mouseDown, this);
+        this.stage.addEventListener(egret.TouchEvent.TOUCH_END, this.mouseUp, this);
+        this.stage.addEventListener(egret.TouchEvent.TOUCH_MOVE, this.mouseMove, this);
+        // this.stage.addEventListener(egret.TouchEvent.TOUCH_TAP, this.click, this);
+    };
+    Main.prototype.click = function (evt) {
+        egret.log("click touch angle:" + this.defAngle);
+        this._bird.tapHandler();
     };
     /**
      * 根据name关键字创建一个Bitmap对象。name属性请参考resources/resource.json配置文件的内容。
@@ -178,6 +196,64 @@ var Main = (function (_super) {
         var texture = RES.getRes(name);
         result.texture = texture;
         return result;
+    };
+    Main.prototype.mouseDown = function (evt) {
+        egret.log("touch begin:" + evt.touchPointID);
+        if (this.touchPoints[evt.touchPointID] == null) {
+            this.touchPoints[evt.touchPointID] = new egret.Point(evt.stageX, evt.stageY);
+            this.touchPoints["names"].push(evt.touchPointID);
+        }
+        this.touchCon++;
+        if (this.touchCon == 2) {
+            this.distance = this.getTouchDistance();
+            egret.log("distance:" + this.distance);
+            // this.defAngle = this.getTouchAngle();
+            // egret.log("touch angle:" + this.defAngle);
+            // egret.log("bird angle:" + this._bird.rotation);
+        }
+    };
+    Main.prototype.mouseMove = function (evt) {
+        //egret.log("touch move:"+evt.touchPointID);
+        this.touchPoints[evt.touchPointID].x = evt.stageX;
+        this.touchPoints[evt.touchPointID].y = evt.stageY;
+        egret.log("this.distance:" + this.distance);
+        if (this.touchCon == 2) {
+            var newdistance = this.getTouchDistance();
+            egret.log("newdistance:" + newdistance);
+            egret.log("newdistance / this.distance:" + newdistance / this.distance);
+            this._bird.scaleX *= newdistance / this.distance;
+            this._bird.scaleY = this._bird.scaleX;
+            // var newangle = this.getTouchAngle();
+            // this._bird.rotation = this._currentBirdRotation + newangle - this.defAngle;
+        }
+    };
+    Main.prototype.mouseUp = function (evt) {
+        egret.log("touch end:" + evt.touchPointID);
+        delete this.touchPoints[evt.touchPointID];
+        this.touchCon--;
+        //
+        // this._bird.width *= this._bird.scaleX;
+        // this._bird.height *= this._bird.scaleY;
+        // this._bird.scaleX = 1;
+        // this._bird.scaleY = 1;
+        // this._bird.anchorOffsetX = this._bird.width/2;
+        // this._bird.anchorOffsetY = this._bird.height/2;
+        // egret.log("bird size [wdith:" + this._bird.width.toFixed(1) + ", height:" + this._bird.height.toFixed(1) + "]");
+        // egret.log("bird angle:" + this._bird.rotation);
+    };
+    Main.prototype.getTouchDistance = function () {
+        var _distance = 0;
+        var names = this.touchPoints["names"];
+        _distance = egret.Point.distance(this.touchPoints[names[names.length - 1]], this.touchPoints[names[names.length - 2]]);
+        return _distance;
+    };
+    Main.prototype.getTouchAngle = function () {
+        var ang = 0;
+        var names = this.touchPoints["names"];
+        var p1 = this.touchPoints[names[names.length - 1]];
+        var p2 = this.touchPoints[names[names.length - 2]];
+        ang = Math.atan2((p1.y - p2.y), (p1.x - p2.x)) / this.c;
+        return ang;
     };
     return Main;
 }(eui.UILayer));

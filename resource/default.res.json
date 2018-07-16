@@ -1,7 +1,7 @@
 {
 	"groups": [
 		{
-			"keys": "checkbox_select_disabled_png,checkbox_select_down_png,checkbox_select_up_png,checkbox_unselect_png,selected_png,border_png,header_png,radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png,roundthumb_png,thumb_png,track_png,tracklight_png,handle_png,off_png,on_png,button_down_png,button_up_png,thumb_pb_png,track_pb_png,track_sb_png,bg_jpg,egret_icon_png,description_json,gezi_bg_png,player_png,gezi_json",
+			"keys": "checkbox_select_disabled_png,checkbox_select_down_png,checkbox_select_up_png,checkbox_unselect_png,selected_png,border_png,header_png,radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png,roundthumb_png,thumb_png,track_png,tracklight_png,handle_png,off_png,on_png,button_down_png,button_up_png,thumb_pb_png,track_pb_png,track_sb_png,bg_jpg,egret_icon_png,description_json,gezi_bg_png,player_png,gezi_json,jinbi_png,shuzi_fnt,shuzi_png",
 			"name": "preload"
 		}
 	],
@@ -151,6 +151,21 @@
 			"type": "sheet",
 			"url": "assets/map/gezi.json",
 			"subkeys": "gezi_pao,gezi_jinbi,gezi_wenhao,gezi_tou,gezi_sart,gezi_tili,gezi_dun,gezi_fangzi,gezi_hongbaofagnzi"
+		},
+		{
+			"name": "jinbi_png",
+			"type": "image",
+			"url": "assets/map/jinbi.png"
+		},
+		{
+			"name": "shuzi_fnt",
+			"type": "font",
+			"url": "assets/map/shuzi.fnt"
+		},
+		{
+			"name": "shuzi_png",
+			"type": "image",
+			"url": "assets/map/shuzi.png"
 		}
 	]
 }

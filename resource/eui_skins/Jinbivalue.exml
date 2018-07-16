@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="Jinbivalue" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image id="jinbiIcon" width="80%" height="20" x="1" y="0" source="jinbi_png"/>
+	<e:BitmapLabel id="value" width="80%" height="20" y="20" font="shuzi_fnt" text="123" x="0"/>
+</e:Skin>

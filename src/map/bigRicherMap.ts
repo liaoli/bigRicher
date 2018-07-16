@@ -26,6 +26,9 @@ module map {
 			this.addgezi()
 			this.init();
 			this.initExternalInterface();
+
+
+
 		}
 
 
@@ -284,7 +287,6 @@ module map {
 			}
 
 			this.sort();
-
 		}
 
 
@@ -363,12 +365,12 @@ module map {
 			this.targetPos.x = nextGz.x + (nextGz.width - this.player.width) / 2;
 			this.targetPos.y = nextGz.y + nextGz.height / 2 - this.player.height;
 
-		
+
 
 			console.log("this.targetPos:" + this.targetPos);
 
 			console.log("this.player.x=" + this.player.x + ",this.player.x=" + this.player.y);
-			
+
 
 			if (0 <= this.oldindexOfPlayer && this.oldindexOfPlayer < 12) {
 				this.point2.x = this.player.x;
@@ -382,10 +384,18 @@ module map {
 			if (this.oldindexOfPlayer == this.jumpgezis.length) {
 				this.oldindexOfPlayer = 0;
 			}
-			this.indexOfNext++;
-			
+
+
 
 			egret.Tween.get(this).to({ factor: 1 }, 500).call(() => {
+
+				let jinbi: map.JinbiOfGezi = this.nextJinbis.shift();
+
+				this.removeChild(jinbi);
+
+				map.JinbiOfGezi.reclaim(jinbi);
+
+				this.indexOfNext++;
 				this.nextGezi();
 			});
 		}
@@ -397,6 +407,7 @@ module map {
 		private targetPos: egret.Point;
 		private point2: egret.Point = new egret.Point();
 		private nextJumpGezis: Array<map.gezi>;
+		private nextJinbis: Array<map.JinbiOfGezi> = new Array<map.JinbiOfGezi>();
 		private indexOfNext: number = 0;
 		private oldindexOfPlayer: number = 0;
 
@@ -407,7 +418,7 @@ module map {
 		}
 		//计算方法参考 二次贝塞尔公式  
 		public set factor(value: number) {
-
+			//console.log("value = " + value);
 			this.player.x = (1 - value) * (1 - value) * this.player.x + 2 * value * (1 - value) * this.point2.x + value * value * (this.targetPos.x);
 			this.player.y = (1 - value) * (1 - value) * this.player.y + 2 * value * (1 - value) * this.point2.y + value * value * (this.targetPos.y);
 		}
@@ -416,7 +427,8 @@ module map {
 			this.addEventListener(egret.TouchEvent.TOUCH_TAP, this.tapHandler, this);
 		}
 
-		private tapHandler() {
+		public tapHandler() {
+			this.touchEnabled = false;
 			this.oldindexOfPlayer = this.indexOfPlayer;
 			XhGame.playBigRicher().then((res) => {
 				let nextGeziNum = res.step;
@@ -455,16 +467,37 @@ module map {
 				console.log("this.nextJumpGezis.length = " + this.nextJumpGezis.length);
 
 				console.log("this.indexOfPlayer = " + this.indexOfPlayer)
+				let items = res.rewards;
+
+                console.log("this.nextJumpGezis.length = " + this.nextJumpGezis.length );
+				console.log("items.length = " + items.length );
+
+				this.nextJumpGezis.forEach((item, index) => {
+					let jinbiValue: number = 0;
+					if (items[index].reward.event == 1) {
+						jinbiValue = items[index].reward.extra.coin;
+					}
+
+					let jinbi: map.JinbiOfGezi = map.JinbiOfGezi.produce(this.mGgzw, jinbiValue + "");
+					jinbi.x = item.x + (item.width - jinbi.width) / 3;
+					jinbi.y = item.y - jinbi.height / 8;
+					this.nextJinbis.push(jinbi);
+				})
+
+
+
+				this.nextJinbis.forEach((item, index) => {
+					this.addChild(item);
+				})
 
 				this.nextGezi();
-
 
 			}).catch((err) => {
 
 				if (err.errorCode == 4005) {
 					console.log(err.message);
 				}
-
+				console.log(err);
 			})
 
 

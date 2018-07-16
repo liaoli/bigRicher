@@ -8,14 +8,15 @@
 		"libs/modules/promise/promise.js"
 	],
 	"game": [
-		"bin-debug/map/bigRicherMap.js",
+		"bin-debug/map/GameUtil.js",
 		"bin-debug/AssetAdapter.js",
 		"bin-debug/Main.js",
 		"bin-debug/Platform.js",
 		"bin-debug/ThemeAdapter.js",
+		"bin-debug/map/bigRicherMap.js",
 		"bin-debug/LoadingUI.js",
-		"bin-debug/map/GameUtil.js",
 		"bin-debug/map/gezi.js",
+		"bin-debug/map/JinbiOfGezi.js",
 		"bin-debug/service/Http.js",
 		"bin-debug/service/Httpconfig.js",
 		"bin-debug/service/service.js"
