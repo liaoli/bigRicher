@@ -103,25 +103,33 @@ class Main extends eui.UILayer {
 
         let bigRicher: map.bigRicherMap = new map.bigRicherMap();
         this._bird = bigRicher;
+        console.log(this.stage.height);
 
         bigRicher.width = this.width - this.width / 10
         bigRicher.height = bigRicher.width;
+        // this._bird.x = this.stage.stageWidth / 2;
+        // this._bird.y = this.stage.stageHeight / 2;
         this._bird.x = this.stage.stageWidth / 2;
         this._bird.y = this.stage.stageHeight / 2;
         this._bird.anchorOffsetX = this._bird.width / 2;
         this._bird.anchorOffsetY = this._bird.height / 2;
 
-        this.addChild(bigRicher);
+        // this.addChild(bigRicher);
 
-        this.stage.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this.mouseDown, this);
-        this.stage.addEventListener(egret.TouchEvent.TOUCH_END, this.mouseUp, this);
-        this.stage.addEventListener(egret.TouchEvent.TOUCH_MOVE, this.mouseMove, this);
+        // this.stage.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this.mouseDown, this);
+        // this.stage.addEventListener(egret.TouchEvent.TOUCH_END, this.mouseUp, this);
+        // this.stage.addEventListener(egret.TouchEvent.TOUCH_MOVE, this.mouseMove, this);
         // this.stage.addEventListener(egret.TouchEvent.TOUCH_TAP, this.click, this);
+        let dialog: map.eventDialogSteal = new map.eventDialogSteal();
+
+        this.addChild(dialog);
+
     }
 
     private click(evt: egret.TouchEvent) {
-        egret.log("click touch angle:" + this.defAngle);
-        this._bird.tapHandler();
+        console.log("click touch angle:" + this.defAngle);
+        // this._bird.tapHandler();
+
     }
 
     /**
@@ -141,7 +149,7 @@ class Main extends eui.UILayer {
     private touchCon: number = 0;
     private _currentBirdRotation: number = 0;
     private mouseDown(evt: egret.TouchEvent) {
-        egret.log("touch begin:" + evt.touchPointID);
+        console.log("touch begin:" + evt.touchPointID);
         if (this.touchPoints[evt.touchPointID] == null) {
             this.touchPoints[evt.touchPointID] = new egret.Point(evt.stageX, evt.stageY);
             this.touchPoints["names"].push(evt.touchPointID);
@@ -150,11 +158,11 @@ class Main extends eui.UILayer {
 
         if (this.touchCon == 2) {
             this.distance = this.getTouchDistance();
-            egret.log("distance:" + this.distance);
+            console.log("distance:" + this.distance);
 
             // this.defAngle = this.getTouchAngle();
-            // egret.log("touch angle:" + this.defAngle);
-            // egret.log("bird angle:" + this._bird.rotation);
+            //console.log("touch angle:" + this.defAngle);
+            //console.log("bird angle:" + this._bird.rotation);
         }
 
     }
@@ -165,12 +173,12 @@ class Main extends eui.UILayer {
         this.touchPoints[evt.touchPointID].x = evt.stageX;
         this.touchPoints[evt.touchPointID].y = evt.stageY;
 
-        egret.log("this.distance:" + this.distance);
+        console.log("this.distance:" + this.distance);
 
         if (this.touchCon == 2) {
             var newdistance = this.getTouchDistance();
-            egret.log("newdistance:" + newdistance);
-            egret.log("newdistance / this.distance:" + newdistance / this.distance);
+            console.log("newdistance:" + newdistance);
+            console.log("newdistance / this.distance:" + newdistance / this.distance);
 
             this._bird.scaleX *= newdistance / this.distance;
             this._bird.scaleY = this._bird.scaleX;
@@ -182,7 +190,7 @@ class Main extends eui.UILayer {
 
 
     private mouseUp(evt: egret.TouchEvent) {
-        egret.log("touch end:" + evt.touchPointID);
+        console.log("touch end:" + evt.touchPointID);
         delete this.touchPoints[evt.touchPointID];
         this.touchCon--;
         //
@@ -194,8 +202,8 @@ class Main extends eui.UILayer {
         // this._bird.anchorOffsetX = this._bird.width/2;
         // this._bird.anchorOffsetY = this._bird.height/2;
 
-       // egret.log("bird size [wdith:" + this._bird.width.toFixed(1) + ", height:" + this._bird.height.toFixed(1) + "]");
-        // egret.log("bird angle:" + this._bird.rotation);
+        //console.log("bird size [wdith:" + this._bird.width.toFixed(1) + ", height:" + this._bird.height.toFixed(1) + "]");
+        //console.log("bird angle:" + this._bird.rotation);
     }
 
     private getTouchDistance(): number {

@@ -23,7 +23,7 @@ module map {
 			this.bgHeight = mapBg.height;
 			this.addChild(mapBg);
 			this.createjumpgezi();
-			this.addgezi()
+			this.addgezi();
 
 			// this.createjumpgezi_test();
 			this.init();

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="eventSteal" height="1624" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing"
+        xmlns:map="map.*" width="750">
+	<w:Config id="164a8087f79"/>
+	<e:Group width="750" height="1334" x="0" y="0">
+		<e:Rect width="100%" height="100%" x="0.5" y="0" fillColor="0x000000" fillAlpha="0.7" scaleX="1" scaleY="1" />
+		<e:Group width="662" height="900" horizontalCenter="0" verticalCenter="0" x="-337" y="218" scaleX="1" scaleY="1">
+			<e:Image width="662" height="900" source="bigricher_dialog_bg_2_662x900_png" verticalCenter="0" horizontalCenter="0" />
+			<e:Image id="eventIcon" width="382" height="278" source="bigricher_event_steal_png" horizontalCenter="0" bottom="50" />
+			<map:eventHeadPortrait id="topUser" width="189" height="180" horizontalCenter="0" top="150" />
+			<map:eventHeadPortrait id="leftuser" width="189" height="180" y="339" left="90" enabled="false" />
+			<map:eventHeadPortrait id="rightUser" width="189" height="180" y="339" right="90" />
+			<e:Button id="dialog_close" label="Button" right="10" top="15">
+				<e:skinName>
+					<e:Skin states="up,down,disabled">
+						<e:Image width="90%" height="90%" width.down="100%" height.down="100%" source="btn_close_png"
+						         source.down="btn_close_png" source.disabled="btn_close_png" horizontalCenter="-1.5" verticalCenter="-1.5" />
+					</e:Skin>
+				</e:skinName>
+			</e:Button>
+			<e:Button id="cancle" label="" width="234" height="78" left="82" bottom="356" enabled="true">
+				<e:skinName>
+					<e:Skin states="up,down,disabled">
+						<e:Image width="90%" height="90%" width.down="100%" height.down="100%" source="bigricher_dialog_event_cancle_png"
+						         source.down="bigricher_dialog_event_cancle_png" source.disabled="bigricher_dialog_event_cancle_png" />
+						<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0" />
+					</e:Skin>
+				</e:skinName>
+			</e:Button>
+			<e:Button id="sure" label="" width="234" height="78" bottom="356" right="82" enabled="true">
+				<e:skinName>
+					<e:Skin states="up,down,disabled">
+						<e:Image width="90%" height="90%" width.down="100%" height.down="100%" source="bigricher_dialog_event_sure_png"
+						         source.down="bigricher_dialog_event_sure_png" source.disabled="bigricher_dialog_event_cancle_png" />
+						<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0" />
+					</e:Skin>
+				</e:skinName>
+			</e:Button>
+			<e:Label id="dialogTitle" text="选个富豪，劫富济贫吧" bold="true" fontFamily="Microsoft YaHei" size="36" top="23"
+			         horizontalCenter="0" />
+			<e:Label id="dialog_tips" text="温馨提示：最富有的富豪有120万" textColor="0x939393" size="24" fontFamily="Microsoft YaHei"
+			         horizontalCenter="0" top="106" />
+			<e:Label id="eventDiscription" text="恭喜你偷取了3999金币，并在对方金币建筑留下\n狗屎，对方走过无收益\n若分享则能获得双倍金币" y="314" horizontalCenter="0" textColor="0x737373"
+			         size="24" lineSpacing="22" textAlign="center" fontFamily="Microsoft YaHei" />
+		</e:Group>
+	</e:Group>
+</e:Skin>

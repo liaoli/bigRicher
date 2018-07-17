@@ -1,7 +1,7 @@
 {
 	"groups": [
 		{
-			"keys": "checkbox_select_disabled_png,checkbox_select_down_png,checkbox_select_up_png,checkbox_unselect_png,selected_png,border_png,header_png,radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png,roundthumb_png,thumb_png,track_png,tracklight_png,handle_png,off_png,on_png,button_down_png,button_up_png,thumb_pb_png,track_pb_png,track_sb_png,bg_jpg,egret_icon_png,description_json,gezi_bg_png,player_png,jinbi_png,shuzi_fnt,shuzi_png,gezi_fangzi_png,gezi_sart_png,gezi_pao_png,gezi_wenhao_png,gezi_tou_png,gezi_dun_png,gezi_tili_png,gezi_hongbaofagnzi_png,gezi_jinbi_png",
+			"keys": "checkbox_select_disabled_png,checkbox_select_down_png,checkbox_select_up_png,checkbox_unselect_png,selected_png,border_png,header_png,radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png,roundthumb_png,thumb_png,track_png,tracklight_png,handle_png,off_png,on_png,button_down_png,button_up_png,thumb_pb_png,track_pb_png,track_sb_png,bg_jpg,egret_icon_png,description_json,gezi_bg_png,player_png,jinbi_png,shuzi_fnt,shuzi_png,gezi_fangzi_png,gezi_sart_png,gezi_pao_png,gezi_wenhao_png,gezi_tou_png,gezi_dun_png,gezi_tili_png,gezi_hongbaofagnzi_png,gezi_jinbi_png,bigricher_event_steal_png,bigricher_dialog_bg_2_662x900_png,bigricher_event_cannon_png,bigricher_circular_png,btn_close_png,bigricher_dialog_event_sure_png,bigricher_dialog_event_cancle_png",
 			"name": "preload"
 		}
 	],
@@ -210,6 +210,41 @@
 			"url": "assets/gezi_jinbi.png",
 			"type": "image",
 			"name": "gezi_jinbi_png"
+		},
+		{
+			"name": "bigricher_event_steal_png",
+			"type": "image",
+			"url": "assets/map/bigricher_event_steal.png"
+		},
+		{
+			"name": "bigricher_dialog_bg_2_662x900_png",
+			"type": "image",
+			"url": "assets/map/bigricher_dialog_bg_2_662x900.png"
+		},
+		{
+			"name": "bigricher_event_cannon_png",
+			"type": "image",
+			"url": "assets/map/bigricher_event_cannon.png"
+		},
+		{
+			"name": "bigricher_circular_png",
+			"type": "image",
+			"url": "assets/map/bigricher_circular.png"
+		},
+		{
+			"name": "btn_close_png",
+			"type": "image",
+			"url": "assets/btn_close.png"
+		},
+		{
+			"name": "bigricher_dialog_event_sure_png",
+			"type": "image",
+			"url": "assets/map/bigricher_dialog_event_sure.png"
+		},
+		{
+			"name": "bigricher_dialog_event_cancle_png",
+			"type": "image",
+			"url": "assets/map/bigricher_dialog_event_cancle.png"
 		}
 	]
 }

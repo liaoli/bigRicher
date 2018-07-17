@@ -13,8 +13,6 @@ module map {
 
 			let _bitmapText: egret.BitmapText = new egret.BitmapText();
 
-
-
 			_bitmapText.font = RES.getRes("shuzi_fnt");
 			
 			_bitmapText.y = jinbi.height ;
