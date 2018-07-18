@@ -315,7 +315,8 @@ var map;
         };
         bigRicherMap.prototype.addgezi = function () {
             return __awaiter(this, void 0, void 0, function () {
-                var resp, i;
+                var _this = this;
+                var resp;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
                         case 0: return [4 /*yield*/, XhGame.getMapData()];
@@ -326,13 +327,20 @@ var map;
                                 console.log(item);
                             });
                             if (resp.map.length == this.jumpgezis.length) {
-                                for (i = 0; i < resp.map.length; i++) {
-                                    this.addChild(this.jumpgezis[i]);
+                                resp.map.forEach(function (item, i) {
+                                    _this.addChild(_this.jumpgezis[i]);
                                     if (i == 2 || i == 5 || i == 7 || i == 12 || i == 14 || i == 17 || i == 19) {
-                                        continue;
                                     }
-                                    this.addChild(this.fangzigezis[i]);
-                                }
+                                    else if (i == 0) {
+                                        var gezi_1 = _this.fangzigezis[i];
+                                        _this.addChild(gezi_1);
+                                    }
+                                    else {
+                                        var gezi_2 = _this.fangzigezis[i];
+                                        gezi_2.data = item;
+                                        _this.addChild(gezi_2);
+                                    }
+                                });
                             }
                             this.initPalyer();
                             return [2 /*return*/];
@@ -363,6 +371,7 @@ var map;
             if (this.indexOfNext >= this.nextJumpGezis.length) {
                 this.indexOfNext = 0;
                 this.touchEnabled = true;
+                this.fangzimaoyan(this.fangzigezis[1].x + this.fangzigezis[1].width / 2, this.fangzigezis[1].y + this.fangzigezis[1].height / 2);
                 return;
             }
             var nextGz = this.nextJumpGezis[this.indexOfNext];
@@ -473,6 +482,25 @@ var map;
                 }
                 console.log(err);
             });
+        };
+        bigRicherMap.prototype.fangzimaoyan = function (x, y) {
+            this.egretFactory = tools.DragonBoneTools.Instance.createEff2New("yan_ske_json", "yan_tex_json", "yan_tex_png");
+            this.eff_robot = this.egretFactory.buildArmatureDisplay("yan");
+            this.addChild(this.eff_robot);
+            this.eff_robot.animation.fadeIn("smoke");
+            this.eff_robot.addEventListener(dragonBones.EventObject.START, this.animationEventHandler, this);
+            this.eff_robot.addEventListener(dragonBones.EventObject.LOOP_COMPLETE, this.animationEventHandler, this);
+            this.eff_robot.addEventListener(dragonBones.EventObject.COMPLETE, this.animationEventHandler, this);
+            this.eff_robot.x = x;
+            this.eff_robot.y = y;
+        };
+        bigRicherMap.prototype.animationEventHandler = function (event) {
+            var eventObject = event.eventObject;
+            console.log(eventObject.animationState.name, event.type, eventObject.name ? eventObject.name : "");
+            if (event.type == "loopComplete") {
+                this.eff_robot.animation.stop();
+                this.removeChild(this.eff_robot);
+            }
         };
         return bigRicherMap;
     }(eui.Group));

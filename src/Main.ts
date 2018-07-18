@@ -92,8 +92,8 @@ class Main extends eui.UILayer {
         })
     }
 
-
     private _bird: map.bigRicherMap
+
     /**
      * 创建场景界面
      * Create scene interface
@@ -114,22 +114,24 @@ class Main extends eui.UILayer {
         this._bird.anchorOffsetX = this._bird.width / 2;
         this._bird.anchorOffsetY = this._bird.height / 2;
 
-        // this.addChild(bigRicher);
+        this.addChild(bigRicher);
 
         // this.stage.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this.mouseDown, this);
         // this.stage.addEventListener(egret.TouchEvent.TOUCH_END, this.mouseUp, this);
         // this.stage.addEventListener(egret.TouchEvent.TOUCH_MOVE, this.mouseMove, this);
-        // this.stage.addEventListener(egret.TouchEvent.TOUCH_TAP, this.click, this);
+        this.stage.addEventListener(egret.TouchEvent.TOUCH_TAP, this.click, this);
         let dialog: map.eventDialogSteal = new map.eventDialogSteal();
 
-        this.addChild(dialog);
+        // this.addChild(dialog);
+
+        
 
     }
 
     private click(evt: egret.TouchEvent) {
         console.log("click touch angle:" + this.defAngle);
         // this._bird.tapHandler();
-
+      
     }
 
     /**

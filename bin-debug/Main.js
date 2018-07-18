@@ -180,13 +180,13 @@ var Main = (function (_super) {
         this._bird.y = this.stage.stageHeight / 2;
         this._bird.anchorOffsetX = this._bird.width / 2;
         this._bird.anchorOffsetY = this._bird.height / 2;
-        // this.addChild(bigRicher);
+        this.addChild(bigRicher);
         // this.stage.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this.mouseDown, this);
         // this.stage.addEventListener(egret.TouchEvent.TOUCH_END, this.mouseUp, this);
         // this.stage.addEventListener(egret.TouchEvent.TOUCH_MOVE, this.mouseMove, this);
-        // this.stage.addEventListener(egret.TouchEvent.TOUCH_TAP, this.click, this);
+        this.stage.addEventListener(egret.TouchEvent.TOUCH_TAP, this.click, this);
         var dialog = new map.eventDialogSteal();
-        this.addChild(dialog);
+        // this.addChild(dialog);
     };
     Main.prototype.click = function (evt) {
         console.log("click touch angle:" + this.defAngle);

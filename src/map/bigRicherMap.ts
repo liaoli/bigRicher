@@ -326,14 +326,24 @@ module map {
 
 			if (resp.map.length == this.jumpgezis.length) {
 
-				for (let i = 0; i < resp.map.length; i++) {
+
+				resp.map.forEach((item, i) => {
 					this.addChild(this.jumpgezis[i]);
 					if (i == 2 || i == 5 || i == 7 || i == 12 || i == 14 || i == 17 || i == 19) {
-						continue
+
+					} else if(i == 0) {
+						let gezi: map.gezi = this.fangzigezis[i];
+						this.addChild(gezi);
+					}else{
+						let gezi: map.gezi = this.fangzigezis[i];
+						gezi.data = item;
+						this.addChild(gezi);
 					}
-					this.addChild(this.fangzigezis[i]);
-				}
+
+				});
+
 			}
+
 
 			this.initPalyer();
 		}
@@ -370,6 +380,7 @@ module map {
 			if (this.indexOfNext >= this.nextJumpGezis.length) {
 				this.indexOfNext = 0;
 				this.touchEnabled = true;
+				this.fangzimaoyan(this.fangzigezis[1].x + this.fangzigezis[1].width / 2, this.fangzigezis[1].y + this.fangzigezis[1].height / 2);
 				return;
 			}
 
@@ -517,6 +528,39 @@ module map {
 
 		}
 
+		private egretFactory: dragonBones.EgretFactory;
+		private eff_robot: dragonBones.EgretArmatureDisplay;
+		private fangzimaoyan(x: number, y: number) {
+
+			this.egretFactory = tools.DragonBoneTools.Instance.createEff2New(
+				"yan_ske_json",
+				"yan_tex_json",
+				"yan_tex_png",
+			);
+
+			this.eff_robot = this.egretFactory.buildArmatureDisplay("yan");
+			this.addChild(this.eff_robot);
+
+			this.eff_robot.animation.fadeIn("smoke");
+
+			this.eff_robot.addEventListener(dragonBones.EventObject.START, this.animationEventHandler, this);
+			this.eff_robot.addEventListener(dragonBones.EventObject.LOOP_COMPLETE, this.animationEventHandler, this);
+			this.eff_robot.addEventListener(dragonBones.EventObject.COMPLETE, this.animationEventHandler, this);
+
+			this.eff_robot.x = x;
+			this.eff_robot.y = y;
+		}
+
+		private animationEventHandler(event: dragonBones.EgretEvent): void {
+			let eventObject = event.eventObject;
+			console.log(eventObject.animationState.name, event.type, eventObject.name ? eventObject.name : "");
+			if (event.type == "loopComplete") {
+				this.eff_robot.animation.stop();
+				this.removeChild(this.eff_robot);
+			}
+		}
+
 	}
+
 
 }

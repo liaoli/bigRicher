@@ -10,8 +10,16 @@ module map {
 		private mX: number;
 		private mY: number;
 		public index: number;
-		private fangzi: map.gezi;
-		private data: any;
+
+		public data: any;
+		//我的SB 我叫廖理
+
+		private blueRooms: Array<string> = ["","map_room_blue_1_png", "map_room_blue_2_png", "map_room_blue_3_png", "map_room_blue_4_png", "map_room_blue_5_png", "map_room_blue_6_png", "map_room_blue_7_png", "map_room_blue_8_png", "map_room_blue_9_png", "map_room_blue_10_png"];
+
+		private yellowRooms: Array<string> = ["","map_room_yellow_1_png", "map_room_yellow_2_png", "map_room_yellow_3_png", "map_room_yellow_4_png", "map_room_yellow_5_png", "map_room_yellow_6_png", "map_room_yellow_7_png", "map_room_yellow_8_png", "map_room_yellow_9_png", "map_room_yellow_10_png"];
+
+		private redRooms: Array<string> = ["","map_room_yellow_1_png", "map_room_yellow_2_png", "map_room_yellow_3_png", "map_room_yellow_4_png", "map_room_yellow_5_png", "map_room_yellow_6_png", "map_room_yellow_7_png", "map_room_yellow_8_png", "map_room_yellow_9_png", "map_room_yellow_10_png"];
+
 
 
 
@@ -24,24 +32,58 @@ module map {
 			this.mY = y;
 			this.index = index;
 			this.addEventListener(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
-
+			
 		}
 
 
+		private initData() {
+			let data: any = this.data;
+			if (data) {
+				this.getfangziImg(data.category, data.build.level);
+			}
+		}
+
+		private getfangziImg(category: any, level: any) {
+
+			let fangziImg: string;
+			switch (category) {
+				case 1:
+					fangziImg = this.blueRooms[<number>level];
+					break;
+				case 2:
+
+					fangziImg = this.yellowRooms[<number>level];
+					break;
+				case 3:
+					fangziImg = this.redRooms[<number>level];
+					break;
+
+			}
+
+			this.geziImg = fangziImg
+
+		}
+
 		/**初始化*/
 		private onAddToStage(event: egret.Event) {
+			this.initData();
+			
 			this.width = this.mWidth;
 			this.height = this.mHight;
-			this.x = this.mX  ; this.y = this.mY;
+			this.x = this.mX; this.y = this.mY;
 			this.image = new eui.Image
 
 			this.image.texture = (<map.bigRicherMap>(this.parent)).getGeziTexture(this.geziImg);
 
-			if ("gezi_fangzi_png" == this.geziImg) {
+			
+			
+			let sub = this.geziImg.substring(0,"map_room_".length)
+
+			if ("map_room_" == sub) {
 
 				this.image.width = this.width;
 				this.height = this.image.height = this.image.texture.bitmapData.height * this.width / this.image.texture.bitmapData.width;
-				this.y= this.mY - this.height + this.mHight - 8;
+				this.y = this.mY - this.height + this.mHight - 8;
 				this.addChild(this.image);
 			} else {
 
