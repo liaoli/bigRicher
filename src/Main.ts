@@ -120,18 +120,26 @@ class Main extends eui.UILayer {
         // this.stage.addEventListener(egret.TouchEvent.TOUCH_END, this.mouseUp, this);
         // this.stage.addEventListener(egret.TouchEvent.TOUCH_MOVE, this.mouseMove, this);
         this.stage.addEventListener(egret.TouchEvent.TOUCH_TAP, this.click, this);
-        let dialog: map.eventDialogSteal = new map.eventDialogSteal();
 
-        // this.addChild(dialog);
+        XhGame.EventBus.addEventListener("event_steal", this.callback, this);
+        XhGame.EventBus.addEventListener("event_cannon", this.callback, this);
+    }
 
-        
+    private callback(event: egret.Event) {
+        if (event.type == "event_steal") {
+            let dialog: map.eventDialogSteal = new map.eventDialogSteal(2);
+            this.addChild(dialog);
 
+        } else if (event.type == "event_cannon") {
+            let dialog: map.eventDialogSteal = new map.eventDialogSteal(1);
+            this.addChild(dialog);
+        }
     }
 
     private click(evt: egret.TouchEvent) {
         console.log("click touch angle:" + this.defAngle);
         // this._bird.tapHandler();
-      
+
     }
 
     /**

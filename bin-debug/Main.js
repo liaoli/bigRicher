@@ -185,8 +185,18 @@ var Main = (function (_super) {
         // this.stage.addEventListener(egret.TouchEvent.TOUCH_END, this.mouseUp, this);
         // this.stage.addEventListener(egret.TouchEvent.TOUCH_MOVE, this.mouseMove, this);
         this.stage.addEventListener(egret.TouchEvent.TOUCH_TAP, this.click, this);
-        var dialog = new map.eventDialogSteal();
-        // this.addChild(dialog);
+        XhGame.EventBus.addEventListener("event_steal", this.callback, this);
+        XhGame.EventBus.addEventListener("event_cannon", this.callback, this);
+    };
+    Main.prototype.callback = function (event) {
+        if (event.type == "event_steal") {
+            var dialog = new map.eventDialogSteal(2);
+            this.addChild(dialog);
+        }
+        else if (event.type == "event_cannon") {
+            var dialog = new map.eventDialogSteal(1);
+            this.addChild(dialog);
+        }
     };
     Main.prototype.click = function (evt) {
         console.log("click touch angle:" + this.defAngle);

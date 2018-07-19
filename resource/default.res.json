@@ -1,7 +1,7 @@
 {
 	"groups": [
 		{
-			"keys": "checkbox_select_disabled_png,checkbox_select_down_png,checkbox_select_up_png,checkbox_unselect_png,selected_png,border_png,header_png,radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png,roundthumb_png,thumb_png,track_png,tracklight_png,handle_png,off_png,on_png,button_down_png,button_up_png,thumb_pb_png,track_pb_png,track_sb_png,bg_jpg,description_json,gezi_bg_png,player_png,jinbi_png,shuzi_fnt,shuzi_png,gezi_fangzi_png,gezi_sart_png,gezi_pao_png,gezi_wenhao_png,gezi_tou_png,gezi_dun_png,gezi_hongbaofagnzi_png,bigricher_event_steal_png,bigricher_dialog_bg_2_662x900_png,bigricher_event_cannon_png,bigricher_circular_png,bigricher_dialog_event_sure_png,bigricher_dialog_event_cancle_png,yan_tex_json,yan_tex_png,yan_ske_json,gezi_tili_png,gezi_jinbi_png,map_room_blue_2_png,map_room_blue_3_png,map_room_blue_4_png,map_room_blue_5_png,map_room_blue_6_png,map_room_blue_7_png,map_room_blue_8_png,map_room_blue_9_png,map_room_blue_10_png,map_room_blue_1_png,map_room_yellow_9_png,map_room_yellow_10_png,map_room_yellow_1_png,map_room_yellow_2_png,map_room_yellow_3_png,map_room_yellow_4_png,map_room_yellow_5_png,map_room_yellow_6_png,map_room_yellow_7_png,map_room_yellow_8_png",
+			"keys": "checkbox_select_disabled_png,checkbox_select_down_png,checkbox_select_up_png,checkbox_unselect_png,selected_png,border_png,header_png,radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png,roundthumb_png,thumb_png,track_png,tracklight_png,handle_png,off_png,on_png,button_down_png,button_up_png,thumb_pb_png,track_pb_png,track_sb_png,bg_jpg,description_json,map_room_blue_1_png,map_room_blue_2_png,map_room_blue_3_png,map_room_blue_4_png,map_room_blue_5_png,map_room_blue_6_png,map_room_blue_7_png,map_room_blue_8_png,map_room_blue_9_png,map_room_blue_10_png,map_room_yellow_1_png,map_room_yellow_2_png,map_room_yellow_3_png,map_room_yellow_4_png,map_room_yellow_5_png,map_room_yellow_6_png,map_room_yellow_7_png,map_room_yellow_8_png,map_room_yellow_9_png,map_room_yellow_10_png,player_png,shuzi_fnt,shuzi_png,gezi_bg_png,gezi_dun_png,gezi_fangzi_png,gezi_hongbaofagnzi_png,gezi_jinbi_png,gezi_pao_png,gezi_sart_png,gezi_tili_png,gezi_tou_png,gezi_wenhao_png,jinbi_png,bigricher_circular_png,bigricher_dialog_bg_2_662x900_png,bigricher_dialog_event_cancle_png,bigricher_dialog_event_sure_png,bigricher_event_cannon_png,bigricher_event_steal_png,yan_ske_json,yan_tex_json,yan_tex_png,xiaotou_ske_json,xiaotou_tex_json,xiaotou_tex_png,btn_close_png,cannons_ske_json,cannons_tex_json,cannons_tex_png",
 			"name": "preload"
 		}
 	],
@@ -132,224 +132,254 @@
 			"name": "description_json"
 		},
 		{
-			"url": "assets/map/gezi_bg.png",
+			"name": "map_room_blue_1_png",
 			"type": "image",
-			"name": "gezi_bg_png"
-		},
-		{
-			"url": "assets/map/player.png",
-			"type": "image",
-			"name": "player_png"
-		},
-		{
-			"url": "assets/map/jinbi.png",
-			"type": "image",
-			"name": "jinbi_png"
-		},
-		{
-			"url": "assets/map/shuzi.fnt",
-			"type": "font",
-			"name": "shuzi_fnt"
-		},
-		{
-			"url": "assets/map/shuzi.png",
-			"type": "image",
-			"name": "shuzi_png"
-		},
-		{
-			"url": "assets/map_jinbi_geizi.png",
-			"type": "image",
-			"name": "map_jinbi_geizi_png"
-		},
-		{
-			"url": "assets/map/gezi_fangzi.png",
-			"type": "image",
-			"name": "gezi_fangzi_png"
-		},
-		{
-			"url": "assets/map/gezi_sart.png",
-			"type": "image",
-			"name": "gezi_sart_png"
-		},
-		{
-			"url": "assets/map/gezi_pao.png",
-			"type": "image",
-			"name": "gezi_pao_png"
-		},
-		{
-			"url": "assets/map/gezi_wenhao.png",
-			"type": "image",
-			"name": "gezi_wenhao_png"
-		},
-		{
-			"url": "assets/map/gezi_tou.png",
-			"type": "image",
-			"name": "gezi_tou_png"
-		},
-		{
-			"url": "assets/map/gezi_dun.png",
-			"type": "image",
-			"name": "gezi_dun_png"
-		},
-		{
-			"url": "assets/map/gezi_hongbaofagnzi.png",
-			"type": "image",
-			"name": "gezi_hongbaofagnzi_png"
-		},
-		{
-			"url": "assets/map/bigricher_event_steal.png",
-			"type": "image",
-			"name": "bigricher_event_steal_png"
-		},
-		{
-			"url": "assets/map/bigricher_dialog_bg_2_662x900.png",
-			"type": "image",
-			"name": "bigricher_dialog_bg_2_662x900_png"
-		},
-		{
-			"url": "assets/map/bigricher_event_cannon.png",
-			"type": "image",
-			"name": "bigricher_event_cannon_png"
-		},
-		{
-			"url": "assets/map/bigricher_circular.png",
-			"type": "image",
-			"name": "bigricher_circular_png"
-		},
-		{
-			"url": "assets/map/bigricher_dialog_event_sure.png",
-			"type": "image",
-			"name": "bigricher_dialog_event_sure_png"
-		},
-		{
-			"url": "assets/map/bigricher_dialog_event_cancle.png",
-			"type": "image",
-			"name": "bigricher_dialog_event_cancle_png"
-		},
-		{
-			"name": "yan_tex_json",
-			"type": "json",
-			"url": "assets/smoking/yan_tex.json"
-		},
-		{
-			"name": "yan_tex_png",
-			"type": "image",
-			"url": "assets/smoking/yan_tex.png"
-		},
-		{
-			"name": "yan_ske_json",
-			"type": "json",
-			"url": "assets/smoking/yan_ske.json"
-		},
-		{
-			"name": "gezi_tili_png",
-			"type": "image",
-			"url": "assets/map/gezi_tili.png"
-		},
-		{
-			"name": "gezi_jinbi_png",
-			"type": "image",
-			"url": "assets/map/gezi_jinbi.png"
+			"url": "assets/bigricher/map/map_room_blue_1.png"
 		},
 		{
 			"name": "map_room_blue_2_png",
 			"type": "image",
-			"url": "assets/map/map_room_blue_2.png"
+			"url": "assets/bigricher/map/map_room_blue_2.png"
 		},
 		{
 			"name": "map_room_blue_3_png",
 			"type": "image",
-			"url": "assets/map/map_room_blue_3.png"
+			"url": "assets/bigricher/map/map_room_blue_3.png"
 		},
 		{
 			"name": "map_room_blue_4_png",
 			"type": "image",
-			"url": "assets/map/map_room_blue_4.png"
+			"url": "assets/bigricher/map/map_room_blue_4.png"
 		},
 		{
 			"name": "map_room_blue_5_png",
 			"type": "image",
-			"url": "assets/map/map_room_blue_5.png"
+			"url": "assets/bigricher/map/map_room_blue_5.png"
 		},
 		{
 			"name": "map_room_blue_6_png",
 			"type": "image",
-			"url": "assets/map/map_room_blue_6.png"
+			"url": "assets/bigricher/map/map_room_blue_6.png"
 		},
 		{
 			"name": "map_room_blue_7_png",
 			"type": "image",
-			"url": "assets/map/map_room_blue_7.png"
+			"url": "assets/bigricher/map/map_room_blue_7.png"
 		},
 		{
 			"name": "map_room_blue_8_png",
 			"type": "image",
-			"url": "assets/map/map_room_blue_8.png"
+			"url": "assets/bigricher/map/map_room_blue_8.png"
 		},
 		{
 			"name": "map_room_blue_9_png",
 			"type": "image",
-			"url": "assets/map/map_room_blue_9.png"
+			"url": "assets/bigricher/map/map_room_blue_9.png"
 		},
 		{
 			"name": "map_room_blue_10_png",
 			"type": "image",
-			"url": "assets/map/map_room_blue_10.png"
-		},
-		{
-			"name": "map_room_blue_1_png",
-			"type": "image",
-			"url": "assets/map/map_room_blue_1.png"
-		},
-		{
-			"name": "map_room_yellow_9_png",
-			"type": "image",
-			"url": "assets/map/map_room_yellow_9.png"
-		},
-		{
-			"name": "map_room_yellow_10_png",
-			"type": "image",
-			"url": "assets/map/map_room_yellow_10.png"
+			"url": "assets/bigricher/map/map_room_blue_10.png"
 		},
 		{
 			"name": "map_room_yellow_1_png",
 			"type": "image",
-			"url": "assets/map/map_room_yellow_1.png"
+			"url": "assets/bigricher/map/map_room_yellow_1.png"
 		},
 		{
 			"name": "map_room_yellow_2_png",
 			"type": "image",
-			"url": "assets/map/map_room_yellow_2.png"
+			"url": "assets/bigricher/map/map_room_yellow_2.png"
 		},
 		{
 			"name": "map_room_yellow_3_png",
 			"type": "image",
-			"url": "assets/map/map_room_yellow_3.png"
+			"url": "assets/bigricher/map/map_room_yellow_3.png"
 		},
 		{
 			"name": "map_room_yellow_4_png",
 			"type": "image",
-			"url": "assets/map/map_room_yellow_4.png"
+			"url": "assets/bigricher/map/map_room_yellow_4.png"
 		},
 		{
 			"name": "map_room_yellow_5_png",
 			"type": "image",
-			"url": "assets/map/map_room_yellow_5.png"
+			"url": "assets/bigricher/map/map_room_yellow_5.png"
 		},
 		{
 			"name": "map_room_yellow_6_png",
 			"type": "image",
-			"url": "assets/map/map_room_yellow_6.png"
+			"url": "assets/bigricher/map/map_room_yellow_6.png"
 		},
 		{
 			"name": "map_room_yellow_7_png",
 			"type": "image",
-			"url": "assets/map/map_room_yellow_7.png"
+			"url": "assets/bigricher/map/map_room_yellow_7.png"
 		},
 		{
 			"name": "map_room_yellow_8_png",
 			"type": "image",
-			"url": "assets/map/map_room_yellow_8.png"
+			"url": "assets/bigricher/map/map_room_yellow_8.png"
+		},
+		{
+			"name": "map_room_yellow_9_png",
+			"type": "image",
+			"url": "assets/bigricher/map/map_room_yellow_9.png"
+		},
+		{
+			"name": "map_room_yellow_10_png",
+			"type": "image",
+			"url": "assets/bigricher/map/map_room_yellow_10.png"
+		},
+		{
+			"name": "player_png",
+			"type": "image",
+			"url": "assets/bigricher/map/player.png"
+		},
+		{
+			"name": "shuzi_fnt",
+			"type": "font",
+			"url": "assets/bigricher/map/shuzi.fnt"
+		},
+		{
+			"name": "shuzi_png",
+			"type": "image",
+			"url": "assets/bigricher/map/shuzi.png"
+		},
+		{
+			"name": "gezi_bg_png",
+			"type": "image",
+			"url": "assets/bigricher/map/gezi_bg.png"
+		},
+		{
+			"name": "gezi_dun_png",
+			"type": "image",
+			"url": "assets/bigricher/map/gezi_dun.png"
+		},
+		{
+			"name": "gezi_fangzi_png",
+			"type": "image",
+			"url": "assets/bigricher/map/gezi_fangzi.png"
+		},
+		{
+			"name": "gezi_hongbaofagnzi_png",
+			"type": "image",
+			"url": "assets/bigricher/map/gezi_hongbaofagnzi.png"
+		},
+		{
+			"name": "gezi_jinbi_png",
+			"type": "image",
+			"url": "assets/bigricher/map/gezi_jinbi.png"
+		},
+		{
+			"name": "gezi_pao_png",
+			"type": "image",
+			"url": "assets/bigricher/map/gezi_pao.png"
+		},
+		{
+			"name": "gezi_sart_png",
+			"type": "image",
+			"url": "assets/bigricher/map/gezi_sart.png"
+		},
+		{
+			"name": "gezi_tili_png",
+			"type": "image",
+			"url": "assets/bigricher/map/gezi_tili.png"
+		},
+		{
+			"name": "gezi_tou_png",
+			"type": "image",
+			"url": "assets/bigricher/map/gezi_tou.png"
+		},
+		{
+			"name": "gezi_wenhao_png",
+			"type": "image",
+			"url": "assets/bigricher/map/gezi_wenhao.png"
+		},
+		{
+			"name": "jinbi_png",
+			"type": "image",
+			"url": "assets/bigricher/map/jinbi.png"
+		},
+		{
+			"name": "bigricher_circular_png",
+			"type": "image",
+			"url": "assets/bigricher/dialog/bigricher_circular.png"
+		},
+		{
+			"name": "bigricher_dialog_bg_2_662x900_png",
+			"type": "image",
+			"url": "assets/bigricher/dialog/bigricher_dialog_bg_2_662x900.png"
+		},
+		{
+			"name": "bigricher_dialog_event_cancle_png",
+			"type": "image",
+			"url": "assets/bigricher/dialog/bigricher_dialog_event_cancle.png"
+		},
+		{
+			"name": "bigricher_dialog_event_sure_png",
+			"type": "image",
+			"url": "assets/bigricher/dialog/bigricher_dialog_event_sure.png"
+		},
+		{
+			"name": "bigricher_event_cannon_png",
+			"type": "image",
+			"url": "assets/bigricher/dialog/bigricher_event_cannon.png"
+		},
+		{
+			"name": "bigricher_event_steal_png",
+			"type": "image",
+			"url": "assets/bigricher/dialog/bigricher_event_steal.png"
+		},
+		{
+			"name": "yan_ske_json",
+			"type": "json",
+			"url": "assets/bigricher/smoking/yan_ske.json"
+		},
+		{
+			"name": "yan_tex_json",
+			"type": "json",
+			"url": "assets/bigricher/smoking/yan_tex.json"
+		},
+		{
+			"name": "yan_tex_png",
+			"type": "image",
+			"url": "assets/bigricher/smoking/yan_tex.png"
+		},
+		{
+			"name": "xiaotou_ske_json",
+			"type": "json",
+			"url": "assets/bigricher/steal/xiaotou_ske.json"
+		},
+		{
+			"name": "xiaotou_tex_json",
+			"type": "json",
+			"url": "assets/bigricher/steal/xiaotou_tex.json"
+		},
+		{
+			"name": "xiaotou_tex_png",
+			"type": "image",
+			"url": "assets/bigricher/steal/xiaotou_tex.png"
+		},
+		{
+			"name": "btn_close_png",
+			"type": "image",
+			"url": "assets/bigricher/dialog/btn_close.png"
+		},
+		{
+			"name": "cannons_ske_json",
+			"type": "json",
+			"url": "assets/bigricher/cannons/cannons_ske.json"
+		},
+		{
+			"name": "cannons_tex_json",
+			"type": "json",
+			"url": "assets/bigricher/cannons/cannons_tex.json"
+		},
+		{
+			"name": "cannons_tex_png",
+			"type": "image",
+			"url": "assets/bigricher/cannons/cannons_tex.png"
 		}
 	]
 }
