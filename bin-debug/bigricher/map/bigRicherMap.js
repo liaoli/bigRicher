@@ -326,7 +326,18 @@ var map;
                             this.indexOfPlayer = data.currentPosition;
                             if (data.map.length == this.jumpgezis.length) {
                                 data.map.forEach(function (item, i) {
-                                    _this.addChild(_this.jumpgezis[i]);
+                                    if (i == 2) {
+                                        _this.addChildAt(_this.jumpgezis[i], 3);
+                                    }
+                                    else if (i == 4) {
+                                        _this.addChildAt(_this.jumpgezis[i], 7);
+                                    }
+                                    else if (i == 6) {
+                                        _this.addChildAt(_this.jumpgezis[i], 7);
+                                    }
+                                    else {
+                                        _this.addChild(_this.jumpgezis[i]);
+                                    }
                                     if (i == 2 || i == 5 || i == 7 || i == 12 || i == 14 || i == 17 || i == 19) {
                                     }
                                     else if (i == 0) {
@@ -336,7 +347,18 @@ var map;
                                     else {
                                         var gezi_2 = _this.fangzigezis[i];
                                         gezi_2.data = item;
-                                        _this.addChild(gezi_2);
+                                        if (i > 8 && i < 12) {
+                                            _this.addChildAt(gezi_2, 10);
+                                        }
+                                        else if (i == 4) {
+                                            _this.addChildAt(gezi_2, 8);
+                                        }
+                                        else if (i == 6) {
+                                            _this.addChildAt(gezi_2, 8);
+                                        }
+                                        else {
+                                            _this.addChild(gezi_2);
+                                        }
                                     }
                                 });
                             }

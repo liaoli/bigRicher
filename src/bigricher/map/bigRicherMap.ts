@@ -327,16 +327,38 @@ namespace map {
 
 
 				data.map.forEach((item, i) => {
-					this.addChild(this.jumpgezis[i]);
+
+
+					if (i == 2) {
+						this.addChildAt(this.jumpgezis[i], 3);
+					} else if (i == 4) {
+						this.addChildAt(this.jumpgezis[i], 7);
+					} else if (i == 6) {
+						this.addChildAt(this.jumpgezis[i], 7);
+					} else {
+						this.addChild(this.jumpgezis[i]);
+					}
+
 					if (i == 2 || i == 5 || i == 7 || i == 12 || i == 14 || i == 17 || i == 19) {
 
 					} else if (i == 0) {
 						let gezi: map.gezi = this.fangzigezis[i];
 						this.addChild(gezi);
+
 					} else {
 						let gezi: map.gezi = this.fangzigezis[i];
 						gezi.data = item;
-						this.addChild(gezi);
+						if (i > 8 && i < 12) {
+							this.addChildAt(gezi, 10);
+						} else if (i == 4) {
+							this.addChildAt(gezi, 8);
+						} else if (i == 6) {
+							this.addChildAt(gezi, 8);
+						} else {
+
+							this.addChild(gezi);
+						}
+
 					}
 
 				});
@@ -422,7 +444,7 @@ namespace map {
 
 				}
 
-				
+
 
 				return;
 			}
