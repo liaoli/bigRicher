@@ -480,7 +480,6 @@ var map;
             configurable: true
         });
         bigRicherMap.prototype.init = function () {
-            this.addEventListener(egret.TouchEvent.TOUCH_TAP, this.tapHandler, this);
         };
         bigRicherMap.prototype.tapHandler = function () {
             var _this = this;

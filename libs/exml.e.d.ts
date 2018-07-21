@@ -58,5 +58,9 @@ declare class eventGetTili extends eui.Skin{
 }
 declare class eventSteal extends eui.Skin{
 }
+declare class eventSuijiTips extends eui.Skin{
+}
 declare class headPortrait extends eui.Skin{
+}
+declare class playShaizi extends eui.Skin{
 }

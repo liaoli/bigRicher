@@ -102,11 +102,18 @@ var map;
             // this.stage.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this.mouseDown, this);
             // this.stage.addEventListener(egret.TouchEvent.TOUCH_END, this.mouseUp, this);
             // this.stage.addEventListener(egret.TouchEvent.TOUCH_MOVE, this.mouseMove, this);
-            this.stage.addEventListener(egret.TouchEvent.TOUCH_TAP, this.click, this);
             XhGame.EventBus.addEventListener("event_steal", this.callback, this);
             XhGame.EventBus.addEventListener("event_cannon", this.callback, this);
             XhGame.EventBus.addEventListener("event_dun", this.callback, this);
             XhGame.EventBus.addEventListener("event_tili", this.callback, this);
+            // let dialog: map.eventSuijiTips = new map.eventSuijiTips(1);
+            // this.addChild(dialog);
+            var playShaizi = new map.playShaizi();
+            XhGame.Tools.displayCenter(playShaizi);
+            this.addChild(playShaizi);
+            playShaizi.bottom = 12;
+            playShaizi.horizontalCenter = 0;
+            playShaizi.addEventListener(egret.TouchEvent.TOUCH_TAP, this.click, this);
         };
         bigricherContral.prototype.callback = function (event) {
             if (event.type == "event_steal") {
@@ -130,7 +137,7 @@ var map;
         };
         bigricherContral.prototype.click = function (evt) {
             console.log("click touch angle:" + this.defAngle);
-            // this._bird.tapHandler();
+            this._bird.tapHandler();
         };
         /**
          * 根据name关键字创建一个Bitmap对象。name属性请参考resources/resource.json配置文件的内容。

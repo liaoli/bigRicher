@@ -2,8 +2,8 @@ namespace map {
 	export class bigricherContral extends eui.UILayer {
 		public constructor() {
 			super();
-			this.width =750;
-			this.height=1334;
+			this.width = 750;
+			this.height = 1334;
 
 		}
 
@@ -62,12 +62,28 @@ namespace map {
 			// this.stage.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this.mouseDown, this);
 			// this.stage.addEventListener(egret.TouchEvent.TOUCH_END, this.mouseUp, this);
 			// this.stage.addEventListener(egret.TouchEvent.TOUCH_MOVE, this.mouseMove, this);
-			this.stage.addEventListener(egret.TouchEvent.TOUCH_TAP, this.click, this);
+		
 
 			XhGame.EventBus.addEventListener("event_steal", this.callback, this);
 			XhGame.EventBus.addEventListener("event_cannon", this.callback, this);
 			XhGame.EventBus.addEventListener("event_dun", this.callback, this);
 			XhGame.EventBus.addEventListener("event_tili", this.callback, this);
+
+
+
+			// let dialog: map.eventSuijiTips = new map.eventSuijiTips(1);
+
+			// this.addChild(dialog);
+
+
+			let playShaizi: map.playShaizi = new map.playShaizi();
+			XhGame.Tools.displayCenter(playShaizi);
+			this.addChild(playShaizi);
+
+			playShaizi.bottom = 12;
+			playShaizi.horizontalCenter = 0;
+			playShaizi.addEventListener(egret.TouchEvent.TOUCH_TAP, this.click, this);
+
 		}
 
 		private callback(event: egret.Event) {
@@ -91,7 +107,7 @@ namespace map {
 
 		private click(evt: egret.TouchEvent) {
 			console.log("click touch angle:" + this.defAngle);
-			// this._bird.tapHandler();
+			this._bird.tapHandler();
 
 		}
 

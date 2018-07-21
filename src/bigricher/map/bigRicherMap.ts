@@ -524,7 +524,7 @@ namespace map {
 		}
 
 		private init() {
-			this.addEventListener(egret.TouchEvent.TOUCH_TAP, this.tapHandler, this);
+		
 		}
 
 		private lastgeiziOfjump: any;

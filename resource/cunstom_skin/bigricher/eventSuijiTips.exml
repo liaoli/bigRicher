@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="eventSuijiTips" width="580" height="478" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Group width="580" height="478" x="0" y="0">
+		<e:Image width="580" height="478" x="0" y="0" source="bigricher_dialog_bg_580x478_png"/>
+		<e:Image id="leftBt" width="234" height="78" x="41" bottom="62" source="bigricher_dialog_event_revovery_slow_png"/>
+		<e:Image id="rightBt" width="234" height="78" bottom="62" right="41" source="bigricher_dialog_event_shsre_cancle_png"/>
+		<e:Image id="close" width="52" height="52" x="510" y="15" source="btn_close_png"/>
+		<e:Label id="title" text="分享抵消负面效果" fontFamily="Microsoft YaHei" horizontalCenter="0" size="36" y="23"/>
+		<e:Label id="eventDescription" text="发生了小不幸\n下一圈经过建筑无收益" y="134" size="28" textColor="0x434343" fontFamily="Microsoft YaHei" verticalAlign="middle" textAlign="center" horizontalCenter="0" lineSpacing="20"/>
+		<e:Label id="shareMessage" text="分享，即消除此负面消息" size="28" textAlign="center" horizontalCenter="0" bottom="194" textColor="0x434343" fontFamily="Microsoft YaHei"/>
+	</e:Group>
+</e:Skin>

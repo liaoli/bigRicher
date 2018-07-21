@@ -33,7 +33,9 @@
 		"resource/cunstom_skin/bigricher/eventDun.exml",
 		"resource/cunstom_skin/bigricher/eventGetTili.exml",
 		"resource/cunstom_skin/bigricher/eventSteal.exml",
-		"resource/cunstom_skin/bigricher/headPortrait.exml"
+		"resource/cunstom_skin/bigricher/eventSuijiTips.exml",
+		"resource/cunstom_skin/bigricher/headPortrait.exml",
+		"resource/cunstom_skin/bigricher/playShaizi.exml"
 	],
 	"path": "resource/default.thm.json"
 }
