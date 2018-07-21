@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="eventGetTili" width="193" height="247" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Group x="0" y="0">
+		<e:Image width="192" height="206" x="0" y="0" source="bigricher_event_get_tili_sezi_png"/>
+		<e:Label id="getTiliTips" text="骰子体力+5" x="19" y="217" fontFamily="Microsoft YaHei"/>
+	</e:Group>
+</e:Skin>

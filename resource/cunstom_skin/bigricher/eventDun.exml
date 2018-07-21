@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="eventDun" width="400" height="300" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" states="in"  width.in="321" height.in="374">
+	<e:Image id="dun" width="321" height="374" x="0" y="0" source.in="bigricher_dialog_bg_dun_png"/>
+</e:Skin>

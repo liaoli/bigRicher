@@ -16,9 +16,9 @@ var map;
             var _this = _super.call(this) || this;
             _this.padding = 7;
             //我的SB 我叫廖理
-            _this.blueRooms = ["", "map_room_blue_1_png", "map_room_blue_2_png", "map_room_blue_3_png", "map_room_blue_4_png", "map_room_blue_5_png", "map_room_blue_6_png", "map_room_blue_7_png", "map_room_blue_8_png", "map_room_blue_9_png", "map_room_blue_10_png"];
-            _this.yellowRooms = ["", "map_room_yellow_1_png", "map_room_yellow_2_png", "map_room_yellow_3_png", "map_room_yellow_4_png", "map_room_yellow_5_png", "map_room_yellow_6_png", "map_room_yellow_7_png", "map_room_yellow_8_png", "map_room_yellow_9_png", "map_room_yellow_10_png"];
-            _this.redRooms = ["", "map_room_yellow_1_png", "map_room_yellow_2_png", "map_room_yellow_3_png", "map_room_yellow_4_png", "map_room_yellow_5_png", "map_room_yellow_6_png", "map_room_yellow_7_png", "map_room_yellow_8_png", "map_room_yellow_9_png", "map_room_yellow_10_png"];
+            _this.blueRooms = ["map_room_blue_0_png", "map_room_blue_1_png", "map_room_blue_2_png", "map_room_blue_3_png", "map_room_blue_4_png", "map_room_blue_5_png", "map_room_blue_6_png", "map_room_blue_7_png", "map_room_blue_8_png", "map_room_blue_9_png", "map_room_blue_10_png"];
+            _this.yellowRooms = ["map_room_yellow_1_png", "map_room_yellow_1_png", "map_room_yellow_2_png", "map_room_yellow_3_png", "map_room_yellow_4_png", "map_room_yellow_5_png", "map_room_yellow_6_png", "map_room_yellow_7_png", "map_room_yellow_8_png", "map_room_yellow_9_png", "map_room_yellow_10_png"];
+            _this.redRooms = ["map_room_red_0_png", "map_room_red_1_png", "map_room_red_2_png", "map_room_red_3_png", "map_room_red_4_png", "map_room_red_5_png", "map_room_red_6_png", "map_room_red_7_png", "map_room_red_8_png", "map_room_red_9_png", "map_room_red_10_png"];
             _this.geziImg = geziImg;
             _this.mWidth = w;
             _this.mHight = h;
@@ -48,6 +48,10 @@ var map;
                     break;
             }
             this.geziImg = fangziImg;
+        };
+        gezi.prototype.changFangziLevel = function () {
+            this.getfangziImg(this.data.build.category, this.changeLevel);
+            this.image.texture = (this.parent).getGeziTexture(this.geziImg);
         };
         /**初始化*/
         gezi.prototype.onAddToStage = function (event) {

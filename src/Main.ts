@@ -101,28 +101,33 @@ class Main extends eui.UILayer {
     protected createGameScene() {
 
 
-        let bigRicher: map.bigRicherMap = new map.bigRicherMap();
-        this._bird = bigRicher;
-        console.log(this.stage.height);
+        let bigricherContral: map.bigricherContral = new map.bigricherContral();
+        this.addChild(bigricherContral);
+        
+        // let bigRicher: map.bigRicherMap = new map.bigRicherMap();
+        // this._bird = bigRicher;
+        // console.log(this.stage.height);
 
-        bigRicher.width = this.width - this.width / 10
-        bigRicher.height = bigRicher.width;
+        // bigRicher.width = this.width - this.width / 10
+        // bigRicher.height = bigRicher.width;
+        // // this._bird.x = this.stage.stageWidth / 2;
+        // // this._bird.y = this.stage.stageHeight / 2;
+        // this._bird.anchorOffsetX = this._bird.width / 2;
+        // this._bird.anchorOffsetY = this._bird.height / 2;
         // this._bird.x = this.stage.stageWidth / 2;
         // this._bird.y = this.stage.stageHeight / 2;
-        this._bird.x = this.stage.stageWidth / 2;
-        this._bird.y = this.stage.stageHeight / 2;
-        this._bird.anchorOffsetX = this._bird.width / 2;
-        this._bird.anchorOffsetY = this._bird.height / 2;
 
-        this.addChild(bigRicher);
+        // this.addChild(bigRicher);
 
         // this.stage.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this.mouseDown, this);
         // this.stage.addEventListener(egret.TouchEvent.TOUCH_END, this.mouseUp, this);
         // this.stage.addEventListener(egret.TouchEvent.TOUCH_MOVE, this.mouseMove, this);
-        this.stage.addEventListener(egret.TouchEvent.TOUCH_TAP, this.click, this);
+        // this.stage.addEventListener(egret.TouchEvent.TOUCH_TAP, this.click, this);
 
-        XhGame.EventBus.addEventListener("event_steal", this.callback, this);
-        XhGame.EventBus.addEventListener("event_cannon", this.callback, this);
+        // XhGame.EventBus.addEventListener("event_steal", this.callback, this);
+        // XhGame.EventBus.addEventListener("event_cannon", this.callback, this);
+        // XhGame.EventBus.addEventListener("event_dun", this.callback, this);
+        // XhGame.EventBus.addEventListener("event_tili", this.callback, this);
     }
 
     private callback(event: egret.Event) {
@@ -133,6 +138,14 @@ class Main extends eui.UILayer {
         } else if (event.type == "event_cannon") {
             let dialog: map.eventDialogSteal = new map.eventDialogSteal(1);
             this.addChild(dialog);
+        } else if (event.type == "event_dun") {
+            let dun: map.eventDun = new map.eventDun();
+            this.addChild(dun);
+            XhGame.Tools.displayCenter(dun);
+        } else if (event.type == "event_tili") {
+            let tili: map.eventGetTili = new map.eventGetTili();
+            this.addChild(tili);
+            XhGame.Tools.displayCenter(tili);
         }
     }
 

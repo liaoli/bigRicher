@@ -223,7 +223,7 @@ var map;
                             }
                             if (j == 3) {
                                 //问号
-                                this.jumpgezis.push(this.createGeziByIndex(i, j, "gezi_wenhao_png", 20));
+                                this.jumpgezis.push(this.createGeziByIndex(i, j, "gezi_tou_png", 20));
                                 this.fangzigezis.push(this.createGeziByIndex(i, j, "gezi_fangzi_png", 20));
                             }
                             if (j == 8) {
@@ -242,7 +242,7 @@ var map;
                             }
                             if (j == 4) {
                                 //jump偷
-                                this.jumpgezis.push(this.createGeziByIndex(i, j, "gezi_tou_png", 18));
+                                this.jumpgezis.push(this.createGeziByIndex(i, j, "gezi_wenhao_png", 18));
                                 this.fangzigezis.push(this.createGeziByIndex(i, j, "gezi_fangzi_png", 18));
                             }
                             if (j == 8) {
@@ -293,7 +293,7 @@ var map;
                                 //房子
                                 this.fangzigezis.push(this.createGeziByIndex(i, j, "gezi_fangzi_png", 16));
                             }
-                            if (j == 6) {
+                            if (j == 7) {
                                 //房子
                                 this.fangzigezis.push(this.createGeziByIndex(i, j, "gezi_fangzi_png", 14));
                             }
@@ -375,15 +375,8 @@ var map;
             return geziGroup;
         };
         bigRicherMap.prototype.initPalyer = function () {
-            this.player = new eui.Image();
-            this.player.source = "player_png";
-            this.player.width = this.mGgzw - 30;
-            this.player.height = this.mGgzw - 30;
-            this.startgz = this.jumpgezis[this.indexOfPlayer];
-            this.player.x = this.startgz.x + (this.startgz.width - this.player.width) / 2;
-            this.player.y = this.startgz.y + this.startgz.height / 2 - this.player.height;
+            this.initplayerAnimation(0, 0);
             console.log("player x = " + this.player.x + ",player y = " + this.player.y);
-            this.addChild(this.player);
         };
         bigRicherMap.prototype.nextGezi = function () {
             var _this = this;
@@ -391,41 +384,64 @@ var map;
             if (this.indexOfNext >= this.nextJumpGezis.length) {
                 this.indexOfNext = 0;
                 this.touchEnabled = true;
-                this.fangzimaoyan(this.fangzigezis[1].x + this.fangzigezis[1].width / 2, this.fangzigezis[1].y + this.fangzigezis[1].height / 2);
-                var id = this.lastgeiziOfjump.reward[0].event % 2;
+                var fangzigezi = this.fangzigezis[this.indexOfPlayer];
+                this.player.animation.play("pig_bei");
+                var eventData = void 0;
+                if (this.lastgeiziOfjump.reward.length == 2) {
+                    eventData = this.lastgeiziOfjump.reward[1];
+                }
+                else {
+                    eventData = this.lastgeiziOfjump.reward[0];
+                }
+                var id = eventData.event;
+                console.log("事件 -----》id = " + id);
                 switch (id) {
-                    // case 6://偷
-                    // 	break;
-                    // case 7://炮
-                    // 	break;
-                    // case 8:
-                    // 	//随机事件
-                    // 	break;
-                    // case 9://获取盾牌
-                    // 	break;
-                    // case 9://获取体力
-                    // 	break;
-                    case 6: //偷
-                    case 7: //炮
-                    case 8:
-                    //随机事件
-                    case 9: //获取盾牌
-                    case 10://获取体力
-                        // XhGame.EventBus.dispatchEvent(new egret.Event("event_test"));
+                    case 0://红包事件
                         break;
-                    case 0:
+                    case 1://测试
+                        break;
+                    case 4://升级建筑
+                        fangzigezi.changeLevel = eventData.extra.level;
+                        this.buildFangzimaoyan(fangzigezi.x + fangzigezi.width / 2, fangzigezi.y + fangzigezi.height / 2);
+                        break;
+                    case 5://修复建筑
+                        break;
+                    case 6://偷
+                        XhGame.EventBus.dispatchEvent(new egret.Event("event_steal"));
+                        break;
+                    case 7://炮
                         XhGame.EventBus.dispatchEvent(new egret.Event("event_cannon"));
                         break;
-                    case 1:
-                        XhGame.EventBus.dispatchEvent(new egret.Event("event_steal"));
+                    case 8:
+                        //随机事件
+                        XhGame.EventBus.dispatchEvent(new egret.Event("event_suijishijian"));
+                        break;
+                    case 9://获取盾牌
+                        XhGame.EventBus.dispatchEvent(new egret.Event("event_dun"));
+                        break;
+                    case 10://获取体力
+                        XhGame.EventBus.dispatchEvent(new egret.Event("event_tili"));
+                        break;
+                    case 11://雷击
+                        this.fangzimaoyan(fangzigezi.x + fangzigezi.width / 2, fangzigezi.y + fangzigezi.height / 2);
+                        break;
+                    case 12://踩狗屎
+                        break;
+                    case 13://三个骰子
+                        break;
+                    case 14://当前建筑已经达到最高等级
+                        break;
+                    case 15://其他建筑还未达到升级的标准
                         break;
                 }
                 return;
             }
             var nextGz = this.nextJumpGezis[this.indexOfNext];
             this.targetPos = new egret.Point();
-            this.targetPos.x = nextGz.x + (nextGz.width - this.player.width) / 2;
-            this.targetPos.y = nextGz.y + nextGz.height / 2 - this.player.height;
+            // this.targetPos.x = nextGz.x + (nextGz.width - this.player.width) / 2;
+            // this.targetPos.y = nextGz.y + nextGz.height / 2 - this.player.height;
+            this.targetPos.x = nextGz.x + this.player.width / 2;
+            this.targetPos.y = nextGz.y + this.player.height / 2;
             console.log("this.targetPos:" + this.targetPos);
             console.log("this.player.x=" + this.player.x + ",this.player.x=" + this.player.y);
             if (0 <= this.oldindexOfPlayer && this.oldindexOfPlayer < 12) {
@@ -471,61 +487,8 @@ var map;
             this.touchEnabled = false;
             this.oldindexOfPlayer = this.indexOfPlayer;
             XhGame.playBigRicher().then(function (res) {
-                var data = res.data;
-                var nextGeziNum = data.step;
-                console.log("nextGeziNum = " + nextGeziNum);
-                console.log("this.indexOfPlayer = " + _this.indexOfPlayer);
-                var start = _this.indexOfPlayer + 1;
-                var end = _this.indexOfPlayer + nextGeziNum + 1;
-                var lengthOfJumpgezis = _this.jumpgezis.length;
-                var delt = end - lengthOfJumpgezis;
-                if (start == lengthOfJumpgezis) {
-                    //player的当前位置是最后一格的时候
-                    start = 0;
-                    end = start + nextGeziNum;
-                    _this.nextJumpGezis = _this.jumpgezis.slice(start, end);
-                    console.log("start = " + start + ",end = " + end);
-                    _this.indexOfPlayer = end - 1;
-                }
-                else {
-                    if (delt > 0) {
-                        //超过一圈了，得从数组最前面取格子补上
-                        _this.nextJumpGezis = _this.jumpgezis.slice(start, end);
-                        console.log("start = " + start + ",end = " + end);
-                        start = 0;
-                        end = end - lengthOfJumpgezis;
-                        var gezis = _this.jumpgezis.slice(start, end);
-                        console.log("this.nextJumpGezis.length = " + _this.nextJumpGezis.length);
-                        console.log("gezis.length = " + gezis.length);
-                        _this.nextJumpGezis = _this.nextJumpGezis.concat(gezis);
-                        console.log("this.nextJumpGezis.length = " + _this.nextJumpGezis.length);
-                        _this.indexOfPlayer = end - 1;
-                    }
-                    else {
-                        _this.nextJumpGezis = _this.jumpgezis.slice(start, end);
-                        _this.indexOfPlayer += nextGeziNum;
-                    }
-                }
-                console.log("this.nextJumpGezis.length = " + _this.nextJumpGezis.length);
-                console.log("this.indexOfPlayer = " + _this.indexOfPlayer);
-                var items = data.rewards;
-                console.log("this.nextJumpGezis.length = " + _this.nextJumpGezis.length);
-                console.log("items.length = " + items.length);
-                _this.nextJumpGezis.forEach(function (item, index) {
-                    var jinbiValue = 0;
-                    if (items[index].reward.event == 1) {
-                        jinbiValue = items[index].reward.extra.coin;
-                    }
-                    var jinbi = map.JinbiOfGezi.produce(_this.mGgzw, jinbiValue + "");
-                    jinbi.x = item.x + (item.width - jinbi.width) / 3;
-                    jinbi.y = item.y - jinbi.height / 8;
-                    _this.nextJinbis.push(jinbi);
-                });
-                _this.lastgeiziOfjump = items[items.length - 1];
-                _this.nextJinbis.forEach(function (item, index) {
-                    _this.addChild(item);
-                });
-                _this.nextGezi();
+                _this.shaiizi(200, 200);
+                _this.res = res;
             }).catch(function (err) {
                 if (err.errorCode == 4005) {
                     console.log(err.message);
@@ -550,7 +513,139 @@ var map;
             if (event.type == "loopComplete") {
                 this.eff_robot.animation.stop();
                 this.removeChild(this.eff_robot);
+                this.fangzigezis[this.indexOfPlayer].changFangziLevel();
             }
+        };
+        bigRicherMap.prototype.buildFangzimaoyan = function (x, y) {
+            this.egretFactory = tools.DragonBoneTools.Instance.createEff2New("build_smoke_ske_json", "build_smoke_tex_json", "build_smoke_tex_png");
+            this.eff_robot = this.egretFactory.buildArmatureDisplay("build_smoke");
+            this.addChild(this.eff_robot);
+            this.eff_robot.animation.fadeIn("smoge2");
+            this.eff_robot.addEventListener(dragonBones.EventObject.START, this.animationEventHandler, this);
+            this.eff_robot.addEventListener(dragonBones.EventObject.LOOP_COMPLETE, this.animationEventHandler, this);
+            this.eff_robot.addEventListener(dragonBones.EventObject.COMPLETE, this.animationEventHandler, this);
+            this.eff_robot.x = x;
+            this.eff_robot.y = y;
+        };
+        bigRicherMap.prototype.shaiizi = function (x, y) {
+            this.egretFactory = tools.DragonBoneTools.Instance.createEff2New("sezi_ske_json", "sezi_tex_json", "sezi_tex_png");
+            this.eff_robot = this.egretFactory.buildArmatureDisplay("sezi");
+            this.addChild(this.eff_robot);
+            this.eff_robot.animation.fadeIn("newAnimation");
+            this.eff_robot.addEventListener(dragonBones.EventObject.START, this.shaiziEventHandler, this);
+            this.eff_robot.addEventListener(dragonBones.EventObject.LOOP_COMPLETE, this.shaiziEventHandler, this);
+            this.eff_robot.addEventListener(dragonBones.EventObject.FRAME_EVENT, this.shaiziEventHandler, this);
+            this.eff_robot.x = x;
+            this.eff_robot.y = y;
+        };
+        bigRicherMap.prototype.initplayerAnimation = function (x, y) {
+            this.playerFactory = tools.DragonBoneTools.Instance.createEff2New("pig_ske_json", "pig_tex_json", "pig_tex_png");
+            var armature = this.playerFactory.buildArmature("pig");
+            this.player = this.playerFactory.buildArmatureDisplay("pig");
+            this.addChild(this.player);
+            if (this.indexOfPlayer >= 0 && this.indexOfPlayer < 12) {
+                this.player.animation.gotoAndPlay("pig_bei");
+            }
+            else {
+                this.player.animation.gotoAndPlay("pig_zheng");
+            }
+            this.player.addEventListener(dragonBones.EventObject.START, this.playerEventHandler, this);
+            this.player.addEventListener(dragonBones.EventObject.LOOP_COMPLETE, this.playerEventHandler, this);
+            this.player.addEventListener(dragonBones.EventObject.FRAME_EVENT, this.playerEventHandler, this);
+            console.log("this.player.width=" + this.player.width + ",this.player.x=" + this.player.height);
+            this.player.scaleX = 0.5;
+            this.player.scaleY = 0.5;
+            this.startgz = this.jumpgezis[this.indexOfPlayer];
+            console.log("this.player.width=" + this.player.width + ",this.player.x=" + this.player.height);
+            x = this.startgz.x;
+            y = this.startgz.y;
+            console.log("this.startgz.width=" + this.startgz.width + ",this.startgz.x=" + this.startgz.height);
+            console.log("this.player.width=" + this.player.width + ",this.player.x=" + this.player.height);
+            console.log("x =" + x + ",y=" + y);
+            this.player.x = x + this.player.width / 2;
+            this.player.y = y + this.player.height / 2;
+        };
+        bigRicherMap.prototype.playerEventHandler = function (event) {
+            var eventObject = event.eventObject;
+            console.log(eventObject.animationState.name, event.type, eventObject.name ? eventObject.name : "");
+        };
+        bigRicherMap.prototype.shaiziEventHandler = function (event) {
+            var eventObject = event.eventObject;
+            console.log(eventObject.animationState.name, event.type, eventObject.name ? eventObject.name : "");
+            if (event.type == "loopComplete") {
+                this.eff_robot.animation.stop();
+                this.removeChild(this.eff_robot);
+                this.initjumpData();
+            }
+            else if (event.type == "frameEvent") {
+                if ("start" == eventObject.name) {
+                }
+                else if ("result" == eventObject.name) {
+                }
+                else if ("end" == eventObject.name) {
+                }
+                else if ("gone" == eventObject.name) {
+                }
+            }
+        };
+        bigRicherMap.prototype.initjumpData = function () {
+            var _this = this;
+            var data = this.res.data;
+            var nextGeziNum = data.step;
+            console.log("nextGeziNum = " + nextGeziNum);
+            console.log("this.indexOfPlayer = " + this.indexOfPlayer);
+            var start = this.indexOfPlayer + 1;
+            var end = this.indexOfPlayer + nextGeziNum + 1;
+            var lengthOfJumpgezis = this.jumpgezis.length;
+            var delt = end - lengthOfJumpgezis;
+            if (start == lengthOfJumpgezis) {
+                //player的当前位置是最后一格的时候
+                start = 0;
+                end = start + nextGeziNum;
+                this.nextJumpGezis = this.jumpgezis.slice(start, end);
+                console.log("start = " + start + ",end = " + end);
+                this.indexOfPlayer = end - 1;
+            }
+            else {
+                if (delt > 0) {
+                    //超过一圈了，得从数组最前面取格子补上
+                    this.nextJumpGezis = this.jumpgezis.slice(start, end);
+                    console.log("start = " + start + ",end = " + end);
+                    start = 0;
+                    end = end - lengthOfJumpgezis;
+                    var gezis = this.jumpgezis.slice(start, end);
+                    console.log("this.nextJumpGezis.length = " + this.nextJumpGezis.length);
+                    console.log("gezis.length = " + gezis.length);
+                    this.nextJumpGezis = this.nextJumpGezis.concat(gezis);
+                    console.log("this.nextJumpGezis.length = " + this.nextJumpGezis.length);
+                    this.indexOfPlayer = end - 1;
+                }
+                else {
+                    this.nextJumpGezis = this.jumpgezis.slice(start, end);
+                    this.indexOfPlayer += nextGeziNum;
+                }
+            }
+            console.log("this.nextJumpGezis.length = " + this.nextJumpGezis.length);
+            console.log("this.indexOfPlayer = " + this.indexOfPlayer);
+            var items = data.rewards;
+            console.log("this.nextJumpGezis.length = " + this.nextJumpGezis.length);
+            console.log("items.length = " + items.length);
+            this.nextJumpGezis.forEach(function (item, index) {
+                var jinbiValue = 0;
+                if (items[index].reward.event == 1) {
+                    jinbiValue = items[index].reward.extra.coin;
+                }
+                var jinbi = map.JinbiOfGezi.produce(_this.mGgzw, jinbiValue + "");
+                jinbi.x = item.x + (item.width - jinbi.width) / 3;
+                jinbi.y = item.y - jinbi.height / 8;
+                _this.nextJinbis.push(jinbi);
+            });
+            this.lastgeiziOfjump = items[items.length - 1];
+            this.nextJinbis.forEach(function (item, index) {
+                _this.addChild(item);
+            });
+            this.player.animation.play("pig_bei_idle");
+            this.nextGezi();
         };
         return bigRicherMap;
     }(eui.Group));

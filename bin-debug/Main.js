@@ -169,24 +169,28 @@ var Main = (function (_super) {
      * Create scene interface
      */
     Main.prototype.createGameScene = function () {
-        var bigRicher = new map.bigRicherMap();
-        this._bird = bigRicher;
-        console.log(this.stage.height);
-        bigRicher.width = this.width - this.width / 10;
-        bigRicher.height = bigRicher.width;
+        var bigricherContral = new map.bigricherContral();
+        this.addChild(bigricherContral);
+        // let bigRicher: map.bigRicherMap = new map.bigRicherMap();
+        // this._bird = bigRicher;
+        // console.log(this.stage.height);
+        // bigRicher.width = this.width - this.width / 10
+        // bigRicher.height = bigRicher.width;
+        // // this._bird.x = this.stage.stageWidth / 2;
+        // // this._bird.y = this.stage.stageHeight / 2;
+        // this._bird.anchorOffsetX = this._bird.width / 2;
+        // this._bird.anchorOffsetY = this._bird.height / 2;
         // this._bird.x = this.stage.stageWidth / 2;
         // this._bird.y = this.stage.stageHeight / 2;
-        this._bird.x = this.stage.stageWidth / 2;
-        this._bird.y = this.stage.stageHeight / 2;
-        this._bird.anchorOffsetX = this._bird.width / 2;
-        this._bird.anchorOffsetY = this._bird.height / 2;
-        this.addChild(bigRicher);
+        // this.addChild(bigRicher);
         // this.stage.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this.mouseDown, this);
         // this.stage.addEventListener(egret.TouchEvent.TOUCH_END, this.mouseUp, this);
         // this.stage.addEventListener(egret.TouchEvent.TOUCH_MOVE, this.mouseMove, this);
-        this.stage.addEventListener(egret.TouchEvent.TOUCH_TAP, this.click, this);
-        XhGame.EventBus.addEventListener("event_steal", this.callback, this);
-        XhGame.EventBus.addEventListener("event_cannon", this.callback, this);
+        // this.stage.addEventListener(egret.TouchEvent.TOUCH_TAP, this.click, this);
+        // XhGame.EventBus.addEventListener("event_steal", this.callback, this);
+        // XhGame.EventBus.addEventListener("event_cannon", this.callback, this);
+        // XhGame.EventBus.addEventListener("event_dun", this.callback, this);
+        // XhGame.EventBus.addEventListener("event_tili", this.callback, this);
     };
     Main.prototype.callback = function (event) {
         if (event.type == "event_steal") {
@@ -196,6 +200,16 @@ var Main = (function (_super) {
         else if (event.type == "event_cannon") {
             var dialog = new map.eventDialogSteal(1);
             this.addChild(dialog);
+        }
+        else if (event.type == "event_dun") {
+            var dun = new map.eventDun();
+            this.addChild(dun);
+            XhGame.Tools.displayCenter(dun);
+        }
+        else if (event.type == "event_tili") {
+            var tili = new map.eventGetTili();
+            this.addChild(tili);
+            XhGame.Tools.displayCenter(tili);
         }
     };
     Main.prototype.click = function (evt) {
