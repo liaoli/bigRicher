@@ -37,6 +37,7 @@ namespace map {
 
 		}
 		private _bird: map.bigRicherMap
+		private playShaizi:map.playShaizi;
 		/**
    * 创建场景界面
    * Create scene interface
@@ -76,13 +77,14 @@ namespace map {
 			// this.addChild(dialog);
 
 
-			let playShaizi: map.playShaizi = new map.playShaizi();
+			this.playShaizi= new map.playShaizi();
+			let playShaizi = this.playShaizi;
 			XhGame.Tools.displayCenter(playShaizi);
 			this.addChild(playShaizi);
 
 			playShaizi.bottom = 12;
 			playShaizi.horizontalCenter = 0;
-			playShaizi.addEventListener(egret.TouchEvent.TOUCH_TAP, this.click, this);
+			playShaizi.shaizi.addEventListener(egret.TouchEvent.TOUCH_TAP, this.click, this);
 
 		}
 
@@ -107,7 +109,15 @@ namespace map {
 
 		private click(evt: egret.TouchEvent) {
 			console.log("click touch angle:" + this.defAngle);
-			this._bird.tapHandler();
+			let target = evt.target;
+			XhGame.Tools.ButtonBound(target, () => {
+
+				// if (target == this.playShaizi.shaizi) {
+					this._bird.tapHandler();
+				// } 
+
+			}, this);
+			
 
 		}
 

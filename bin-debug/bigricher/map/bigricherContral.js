@@ -108,12 +108,13 @@ var map;
             XhGame.EventBus.addEventListener("event_tili", this.callback, this);
             // let dialog: map.eventSuijiTips = new map.eventSuijiTips(1);
             // this.addChild(dialog);
-            var playShaizi = new map.playShaizi();
+            this.playShaizi = new map.playShaizi();
+            var playShaizi = this.playShaizi;
             XhGame.Tools.displayCenter(playShaizi);
             this.addChild(playShaizi);
             playShaizi.bottom = 12;
             playShaizi.horizontalCenter = 0;
-            playShaizi.addEventListener(egret.TouchEvent.TOUCH_TAP, this.click, this);
+            playShaizi.shaizi.addEventListener(egret.TouchEvent.TOUCH_TAP, this.click, this);
         };
         bigricherContral.prototype.callback = function (event) {
             if (event.type == "event_steal") {
@@ -136,8 +137,14 @@ var map;
             }
         };
         bigricherContral.prototype.click = function (evt) {
+            var _this = this;
             console.log("click touch angle:" + this.defAngle);
-            this._bird.tapHandler();
+            var target = evt.target;
+            XhGame.Tools.ButtonBound(target, function () {
+                // if (target == this.playShaizi.shaizi) {
+                _this._bird.tapHandler();
+                // } 
+            }, this);
         };
         /**
          * 根据name关键字创建一个Bitmap对象。name属性请参考resources/resource.json配置文件的内容。

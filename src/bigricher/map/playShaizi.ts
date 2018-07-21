@@ -1,6 +1,6 @@
 module map {
 	export class playShaizi extends eui.Component {
-
+		public shaizi: eui.Group;
 		public constructor() {
 			super();
 			this.addEventListener(eui.UIEvent.COMPLETE, this.onComplete, this);
@@ -14,7 +14,7 @@ module map {
 		}
 
 		private init() {
-			
+
 		}
 	}
 }
