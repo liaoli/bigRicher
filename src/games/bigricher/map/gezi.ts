@@ -12,7 +12,7 @@ namespace map {
 		public index: number;
 		public changeLevel: number;
 		public data: any;
-		//我的SB 我叫廖理
+
 
 		private blueRooms: Array<string> = ["map_room_blue_0_png", "map_room_blue_1_png", "map_room_blue_2_png", "map_room_blue_3_png", "map_room_blue_4_png", "map_room_blue_5_png", "map_room_blue_6_png", "map_room_blue_7_png", "map_room_blue_8_png", "map_room_blue_9_png", "map_room_blue_10_png"];
 
