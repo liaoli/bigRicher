@@ -1,7 +1,7 @@
 {
 	"groups": [
 		{
-			"keys": "checkbox_select_disabled_png,checkbox_select_down_png,checkbox_select_up_png,checkbox_unselect_png,selected_png,border_png,header_png,radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png,roundthumb_png,thumb_png,track_png,tracklight_png,handle_png,off_png,on_png,button_down_png,button_up_png,thumb_pb_png,track_pb_png,track_sb_png,bg_jpg,description_json,map_room_blue_1_png,map_room_blue_2_png,map_room_blue_3_png,map_room_blue_4_png,map_room_blue_5_png,map_room_blue_6_png,map_room_blue_7_png,map_room_blue_8_png,map_room_blue_9_png,map_room_blue_10_png,map_room_yellow_1_png,map_room_yellow_2_png,map_room_yellow_3_png,map_room_yellow_4_png,map_room_yellow_5_png,map_room_yellow_6_png,map_room_yellow_7_png,map_room_yellow_8_png,map_room_yellow_9_png,map_room_yellow_10_png,player_png,shuzi_fnt,shuzi_png,gezi_bg_png,gezi_dun_png,gezi_fangzi_png,gezi_hongbaofagnzi_png,gezi_jinbi_png,gezi_pao_png,gezi_sart_png,gezi_tili_png,gezi_tou_png,gezi_wenhao_png,jinbi_png,bigricher_circular_png,bigricher_dialog_bg_2_662x900_png,bigricher_dialog_event_cancle_png,bigricher_dialog_event_sure_png,bigricher_event_cannon_png,bigricher_event_steal_png,yan_ske_json,yan_tex_json,yan_tex_png,xiaotou_ske_json,xiaotou_tex_json,xiaotou_tex_png,btn_close_png,cannons_ske_json,cannons_tex_json,cannons_tex_png,bigricher_dialog_bg_dun_png,bigricher_event_get_tili_sezi_png,build_smoke_ske_json,build_smoke_tex_json,build_smoke_tex_png,map_room_red_0_png,map_room_red_1_png,map_room_red_2_png,map_room_red_3_png,map_room_red_4_png,map_room_red_5_png,map_room_red_6_png,map_room_red_7_png,map_room_red_8_png,map_room_red_9_png,map_room_red_10_png,map_room_blue_0_png,sezi_ske_json,sezi_tex_json,sezi_tex_png,pig_tex_json,pig_tex_png,pig_ske_json,bigricher_dialog_event_revovery_slow_png,bigricher_dialog_event_shsre_cancle_png,bigricher_dialog_bg_580x478_png,play_shaizi_png,map_room_yellow_0_png",
+			"keys": "checkbox_select_disabled_png,checkbox_select_down_png,checkbox_select_up_png,checkbox_unselect_png,selected_png,border_png,header_png,radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png,roundthumb_png,thumb_png,track_png,tracklight_png,handle_png,off_png,on_png,button_down_png,button_up_png,thumb_pb_png,track_pb_png,track_sb_png,bg_jpg,description_json,map_room_blue_1_png,map_room_blue_2_png,map_room_blue_3_png,map_room_blue_4_png,map_room_blue_5_png,map_room_blue_6_png,map_room_blue_7_png,map_room_blue_8_png,map_room_blue_9_png,map_room_blue_10_png,map_room_yellow_1_png,map_room_yellow_2_png,map_room_yellow_3_png,map_room_yellow_4_png,map_room_yellow_5_png,map_room_yellow_6_png,map_room_yellow_7_png,map_room_yellow_8_png,map_room_yellow_9_png,map_room_yellow_10_png,player_png,shuzi_fnt,shuzi_png,gezi_bg_png,gezi_dun_png,gezi_fangzi_png,gezi_hongbaofagnzi_png,gezi_jinbi_png,gezi_pao_png,gezi_sart_png,gezi_tili_png,gezi_tou_png,gezi_wenhao_png,jinbi_png,bigricher_circular_png,bigricher_dialog_bg_2_662x900_png,bigricher_dialog_event_cancle_png,bigricher_dialog_event_sure_png,bigricher_event_cannon_png,bigricher_event_steal_png,yan_ske_json,yan_tex_json,yan_tex_png,xiaotou_ske_json,xiaotou_tex_json,xiaotou_tex_png,btn_close_png,cannons_ske_json,cannons_tex_json,cannons_tex_png,bigricher_dialog_bg_dun_png,bigricher_event_get_tili_sezi_png,build_smoke_ske_json,build_smoke_tex_json,build_smoke_tex_png,map_room_red_0_png,map_room_red_1_png,map_room_red_2_png,map_room_red_3_png,map_room_red_4_png,map_room_red_5_png,map_room_red_6_png,map_room_red_7_png,map_room_red_8_png,map_room_red_9_png,map_room_red_10_png,map_room_blue_0_png,sezi_ske_json,sezi_tex_json,sezi_tex_png,pig_tex_json,pig_tex_png,pig_ske_json,bigricher_dialog_event_revovery_slow_png,bigricher_dialog_event_shsre_cancle_png,bigricher_dialog_bg_580x478_png,play_shaizi_png,map_room_yellow_0_png,riht4_png,riht5_png,riht6_png,top1_png,top2_png,top3_png,top4_png,top5_png,top6_png,left1_png,left2_png,left3_png,left4_png,left5_png,left6_png,riht1_png,riht2_png,riht3_png",
 			"name": "preload"
 		}
 	],
@@ -520,6 +520,96 @@
 			"name": "map_room_yellow_0_png",
 			"type": "image",
 			"url": "assets/bigricher/map/map_room_yellow_0.png"
+		},
+		{
+			"name": "riht4_png",
+			"type": "image",
+			"url": "assets/bigricher/shaizi/riht4.png"
+		},
+		{
+			"name": "riht5_png",
+			"type": "image",
+			"url": "assets/bigricher/shaizi/riht5.png"
+		},
+		{
+			"name": "riht6_png",
+			"type": "image",
+			"url": "assets/bigricher/shaizi/riht6.png"
+		},
+		{
+			"name": "top1_png",
+			"type": "image",
+			"url": "assets/bigricher/shaizi/top1.png"
+		},
+		{
+			"name": "top2_png",
+			"type": "image",
+			"url": "assets/bigricher/shaizi/top2.png"
+		},
+		{
+			"name": "top3_png",
+			"type": "image",
+			"url": "assets/bigricher/shaizi/top3.png"
+		},
+		{
+			"name": "top4_png",
+			"type": "image",
+			"url": "assets/bigricher/shaizi/top4.png"
+		},
+		{
+			"name": "top5_png",
+			"type": "image",
+			"url": "assets/bigricher/shaizi/top5.png"
+		},
+		{
+			"name": "top6_png",
+			"type": "image",
+			"url": "assets/bigricher/shaizi/top6.png"
+		},
+		{
+			"name": "left1_png",
+			"type": "image",
+			"url": "assets/bigricher/shaizi/left1.png"
+		},
+		{
+			"name": "left2_png",
+			"type": "image",
+			"url": "assets/bigricher/shaizi/left2.png"
+		},
+		{
+			"name": "left3_png",
+			"type": "image",
+			"url": "assets/bigricher/shaizi/left3.png"
+		},
+		{
+			"name": "left4_png",
+			"type": "image",
+			"url": "assets/bigricher/shaizi/left4.png"
+		},
+		{
+			"name": "left5_png",
+			"type": "image",
+			"url": "assets/bigricher/shaizi/left5.png"
+		},
+		{
+			"name": "left6_png",
+			"type": "image",
+			"url": "assets/bigricher/shaizi/left6.png"
+		},
+		{
+			"name": "riht1_png",
+			"type": "image",
+			"url": "assets/bigricher/shaizi/riht1.png"
+		},
+		{
+			"name": "riht2_png",
+			"type": "image",
+			"url": "assets/bigricher/shaizi/riht2.png"
+		},
+		{
+			"name": "riht3_png",
+			"type": "image",
+			"url": "assets/bigricher/shaizi/riht3.png"
 		}
 	]
 }
